@@ -7,8 +7,8 @@
 \usepackage{techreport}  
 
 % New definitions: title, year, number, authors, etc
-% TODO: Check if emails and phone numbers are required
-\newcommand{\trTitle}{Calculating spawn indices for Pacific herring (\!\emph{Clupea pallasii}) in British Columbia, Canada}
+% Note: put words in math mode to avoid case changes (i.e., species names)
+\newcommand{\trTitle}{Calculating spawn indices for Pacific herring ($Clupea~pallasii$) in British Columbia, Canada}
 \newcommand{\trYear}{2017}
 \newcommand{\trReportNum}{XXXX}
 \newcommand{\trAuthALong}{Matthew H.~Grinnell}
@@ -19,6 +19,7 @@
 \newcommand{\trAuthBEmail}{\texttt{Other.Authors@dfo-mpo.gc.ca}}  % Jaclyn.Cleary
 \newcommand{\trAuthAPhone}{(250)~756.7055}
 \newcommand{\trAuthBPhone}{(250)~765.XXXX}  % 7321
+%\newcommand{\thisTitle}{This is a test title clupea pallasii}
 
 % New definition: Address
 \newcommand{\trAddy}{Fisheries and Oceans Canada\\
@@ -55,7 +56,7 @@ Nanaimo, BC \enskip V9T 6N7}
 
 %%%%% Main document %%%%%
 
-\section{Introduction}
+\section{INTRODUCTION}
 
 This report describes the calculations used to convert spawn survey observations (e.g., number of egg layers, extent of spawn) to spawn indices for Pacific herring (\!\emph{Clupea pallasii}) in British Columbia (BC), Canada.
 Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b}.
@@ -87,11 +88,11 @@ Bed widths are used to calculate the spawn index for surface surveys.
 The spawn index is calculated by the \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script \texttt{Spawn.R}, which pulls data from the spawn database (Ref?) and does the calculations described in the following sections.
 Note that variable names in this document correspond to variable names in the \texttt{Spawn.R} script.
 
-\section{Surface spawn}
+\section{SURFACE SPAWN}
 
 Surface spawn surveys collect data along transects, and calculations are done at the transect, and spawn/bed level.
 
-\subsection{Transect level calculations}
+\subsection{TRANSECT LEVEL CALCULATIONS}
 
 For each bottom type, egg layers is
 \begin{equation}
@@ -132,7 +133,7 @@ where $EggDensT$ is in $\text{Eggs} \cdot \text{m}^{-2}$.
 \label{tabIntensity}
 \end{table}
 
-\subsection{Spawn/bed level calculations}
+\subsection{SPAWN/BED LEVEL CALCULATIONS}
 
 At the spawn/bed level, the mean of $EggDensT$ is $EggDensMeanS$.
 Two other metrics are required at the spawn/bed level: the spawn/bed length $Length$ and width $WidthS$, both in metres.%
@@ -144,18 +145,18 @@ SurfSSB = \frac{EggDensMeanS \times Length \times WidthS} {100\,000}
 \end{equation}
 where $SurfSSB$ is in (units?), based on fecundity estimates by \citet{Hay1985}: 200 eggs per gram of female herring, and assuming that females account for 50\% of spawners.
 
-\section{Macrocystis spawn}
+\section{MACROCYSTIS SPAWN}
 
 Macrocystis spawn surveys collect data for individual plants, and calculations are done at the transect, and spawn levels.
 
-\subsection{Transect level calculations}
+\subsection{TRANSECT LEVEL CALCULATIONS}
 
 Several metrics are collected at the transect level: transect length $LengthT$, transect width $WidthT$, and Macrocystis length $LengthMacroT$, all in metres, as well as transect area $AreaT$, in square metres.%
 \footnote{$LengthT$ is the width from shore (i.e., transect length), $WidthT$ is the transect width (i.e., $2\,\text{m}$), and $LengthMacroT$ is the length of the Macrocystis bed.
 $LengthT$ and $LengthMacroT$ will be the same if there is no recorded Macrocystis bed length.}
 In addition, metrics are calculated for mature Macrocystis plants: mean height $HeightMeanT$ in metres, mean egg layers $LayersMeanT$, total number of fronds $FrondsTotT$, and total number of plants $PlantsTotT$.
 
-\subsection{Spawn level calculations}
+\subsection{SPAWN LEVEL CALCULATIONS}
 
 At the spawn level, the mean of $LengthMacroT$ is $LengthMacroMeanS$, the mean of $LengthT$ is $LengthMeanS$, and the sum of $AreaT$ is $AreaTotS$, all in metres.
 In addition, the sum of $PlantsTotT$ is $PlantsTotS$, the sum of $FrondsTotT$ is $FrontsTotS$, the mean of $HeightMeanT$ is $HeightMeanS$, and the mean of $LayersMeanT$ is $LayersMeanS$. 
@@ -184,12 +185,12 @@ MacroSSB = \frac{EggDensS \times LengthMacroMeanS \times LengthMeanS} {100\,000}
 \end{equation}
 where $MacroSSB$ is in (units?), based on fecundity estimates by \citet{Hay1985}.
 
-\section{Understory spawn}
+\section{UNDERSTORY SPAWN}
 
 Understory spawn surveys collect data in quadrats, and calculations are done at the quadrat, transect, and spawn levels.
 There are two separate calculations for egg density at the quadrat level: spawn on the bottom, and spawn on vegetation (i.e., algae).
 
-\subsection{Quadrat level calculations}
+\subsection{QUADRAT LEVEL CALCULATIONS}
 
 Bottom egg density in thousands is \citep{HaegeleEtal1979}
 \begin{equation}
@@ -234,11 +235,11 @@ Stringy algae & 1.0000 \\
 \label{tabVegTypes}
 \end{table}
 
-\subsection{Transect level calculations}
+\subsection{TRANSECT LEVEL CALCULATIONS}
 
 At the transect level, the mean $EggDensWtQ$ is $EggDensWtMeanT$.
 
-\subsection{Spawn level calculations}
+\subsection{SPAWN LEVEL CALCULATIONS}
 
 At the spawn level, the sum of transect widths $Width$ is $WidthTotS$, the mean of $Width$ is $WidthMeanS$, and the vegetation length is $VegLengthS$, all in metres.%
 \footnote{$VegLength$ will be equal to the transect length if there is no recorded vegetation length.} 
@@ -256,7 +257,7 @@ UnderSSB = \frac{EggDensWtS \times VegLengthS \times WidthMeanS} {100\,000}
 \end{equation}
 where $UnderSSB$ is in (units?), based on fecundity estimates by \citet{Hay1985}.
 
-\section{Total spawning biomass}
+\section{TOTAL SPAWN}
 
 The total spawn index for each spawn is
 \begin{equation}
@@ -264,6 +265,13 @@ TotalSSB = SurfSSB + MacroSSB + UnderSSB
 \label{eqTotalSSB}
 \end{equation}
 where $TotalSSB$ is in (units?).
+
+\section{ACKNOWLEDGEMENTS}
+
+Keep in mind:
+\begin{itemize}
+\item Jake Schweigert
+\end{itemize}
 
 % References
 \bibliographystyle{Document/CJFAS}

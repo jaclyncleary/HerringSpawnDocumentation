@@ -47,13 +47,14 @@
 \RequirePackage[authoryear]{natbib}  % Bibliography
 \RequirePackage{setspace}  % Extra space between lines (editing)
 \RequirePackage{lastpage}  % Count total number of pages
-%\RequirePackage[nottoc, notbib]{tocbibind}  % Add index to TOC
+\RequirePackage[nottoc, notbib]{tocbibind}  % Add index to TOC
 \RequirePackage{hanging}  % Hanging paragraphs (i.e., citations)
 \RequirePackage{placeins}  % Better float placement
 \RequirePackage{flafter}  % Floats after their cross-reference
-%\RequirePackage{sectsty}  % Change section formatting
+\RequirePackage{sectsty}  % Change section formatting
 \RequirePackage[english]{babel}  % Typographics and hyphenation
-%\RequirePackage{textcase}  % Case options for title
+\RequirePackage{titlecaps}  %  Case options for title
+\RequirePackage{textcase}  % More case options for title
 \RequirePackage[labelsep=period]{caption}  % Dots in captions
 \RequirePackage[latin1]{inputenc}  % French symbols
 \RequirePackage{calc}  % Text length calculations
@@ -63,3 +64,13 @@
 \bibpunct{(}{)}{;}{a}{}{,}  % Punctuation for citations
 \fancyhead{}  % No header
 \sloppy  % No text in margins (line length)
+
+% Section formatting
+\sectionfont{\normalsize\centering\noindent}  % Section
+\subsectionfont{\normalsize\raggedright\noindent}  % Subsection
+
+\addto\captionsenglish{\renewcommand{\refname}{REFERENCES}}
+\addto\captionsenglish{\renewcommand{\indexname}{INDEX}}
+\addto\captionsenglish{\renewcommand{\contentsname}{CONTENTS}}
+
+\Addlcwords{for a is but and with of in as the etc on to if}

@@ -1,16 +1,17 @@
 \select@language {english}
-\contentsline {section}{Abstract}{iv}
-\contentsline {section}{R\'esum\'e}{iv}
-\contentsline {section}{\numberline {1}Introduction}{1}
-\contentsline {section}{\numberline {2}Surface spawn}{3}
-\contentsline {subsection}{\numberline {2.1}Transect level calculations}{3}
-\contentsline {subsection}{\numberline {2.2}Spawn/bed level calculations}{3}
-\contentsline {section}{\numberline {3}Macrocystis spawn}{4}
-\contentsline {subsection}{\numberline {3.1}Transect level calculations}{4}
-\contentsline {subsection}{\numberline {3.2}Spawn level calculations}{4}
-\contentsline {section}{\numberline {4}Understory spawn}{5}
-\contentsline {subsection}{\numberline {4.1}Quadrat level calculations}{5}
-\contentsline {subsection}{\numberline {4.2}Transect level calculations}{6}
-\contentsline {subsection}{\numberline {4.3}Spawn level calculations}{6}
-\contentsline {section}{\numberline {5}Total spawning biomass}{7}
-\contentsline {section}{References}{7}
+\contentsline {section}{ABSTRACT}{iv}
+\contentsline {section}{R\'{E}SUM\'{E}}{iv}
+\contentsline {section}{\numberline {1}INTRODUCTION}{1}
+\contentsline {section}{\numberline {2}SURFACE SPAWN}{3}
+\contentsline {subsection}{\numberline {2.1}TRANSECT LEVEL CALCULATIONS}{3}
+\contentsline {subsection}{\numberline {2.2}SPAWN/BED LEVEL CALCULATIONS}{4}
+\contentsline {section}{\numberline {3}MACROCYSTIS SPAWN}{4}
+\contentsline {subsection}{\numberline {3.1}TRANSECT LEVEL CALCULATIONS}{4}
+\contentsline {subsection}{\numberline {3.2}SPAWN LEVEL CALCULATIONS}{4}
+\contentsline {section}{\numberline {4}UNDERSTORY SPAWN}{5}
+\contentsline {subsection}{\numberline {4.1}QUADRAT LEVEL CALCULATIONS}{5}
+\contentsline {subsection}{\numberline {4.2}TRANSECT LEVEL CALCULATIONS}{6}
+\contentsline {subsection}{\numberline {4.3}SPAWN LEVEL CALCULATIONS}{6}
+\contentsline {section}{\numberline {5}TOTAL SPAWN}{7}
+\contentsline {section}{\numberline {6}ACKNOWLEDGEMENTS}{7}
+\contentsline {section}{REFERENCES}{7}
