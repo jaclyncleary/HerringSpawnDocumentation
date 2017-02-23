@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.23)  23 FEB 2017 09:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.23)  23 FEB 2017 12:47
 entering extended mode
-**./SpawnFlowChart.tex
-(SpawnFlowChart.tex
+**./SpawnIndex.tex
+(SpawnIndex.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Applications\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -383,28 +383,28 @@ LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count123
 \calc@Cskip=\skip72
-)) (SpawnFlowChart.aux)
-\openout1 = `SpawnFlowChart.aux'.
+)) (SpawnIndex.aux)
+\openout1 = `SpawnIndex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 40.
 
 ("C:\Applications\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    ... okay on input line 40.
 
 ("C:\Applications\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -466,16 +466,16 @@ G,.JBIG2,.JB2,.eps]
 )
 \symgns@font=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
-(Font)                  TS1/cmr/m/n --> TS1/cmr/bx/n on input line 39.
-Package gensymb Info: Math companion symbols declared on input line 39.
-LaTeX Info: Redefining \degree on input line 39.
-LaTeX Info: Redefining \celsius on input line 39.
+(Font)                  TS1/cmr/m/n --> TS1/cmr/bx/n on input line 40.
+Package gensymb Info: Math companion symbols declared on input line 40.
+LaTeX Info: Redefining \degree on input line 40.
+LaTeX Info: Redefining \celsius on input line 40.
 Package gensymb Info: Using text companion symbols for \degree, \celsius and \p
-erthousand on input line 39.
-LaTeX Info: Redefining \ohm on input line 39.
-Package gensymb Info: Using \textohm for \ohm on input line 39.
-Package gensymb Info: Using \textmu for \micro on input line 39.
-LaTeX Info: Redefining \microtypecontext on input line 39.
+erthousand on input line 40.
+LaTeX Info: Redefining \ohm on input line 40.
+Package gensymb Info: Using \textohm for \ohm on input line 40.
+Package gensymb Info: Using \textmu for \micro on input line 40.
+LaTeX Info: Redefining \microtypecontext on input line 40.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -492,11 +492,18 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 39.
+(lastpage)             ! on input line 40.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-(Document/CoverPage.tex <Document/LogoDFO.png, id=1, 1211.2452pt x 128.1588pt>
+(Document/CoverPage.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+<Document/LogoDFO.png, id=1, 1211.2452pt x 128.1588pt>
 File: Document/LogoDFO.png Graphic file (type png)
 
 <use Document/LogoDFO.png>
@@ -509,71 +516,67 @@ File: Document/LogoCanada.jpg Graphic file (type jpg)
 <use Document/LogoCanada.jpg>
 Package pdftex.def Info: Document/LogoCanada.jpg used on input line 21.
 (pdftex.def)             Requested size: 63.17433pt x 19.91692pt.
- [1
+ [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./Document/LogoDFO.png> <
-./Document/LogoCanada.jpg>])
+ <./Document/LogoDFO.png> <./Document/LogoCanada.jpg>])
 (Document/TechReportPage.tex [2
 
-]) (Document/InsideCoverPage.tex
-Package microtype Info: Loading generic settings for font family
-(microtype)             `cmtt' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [1
+]) (Document/InsideCoverPage.tex [1
 
 ])
 (Document/ColophonPage.tex [2
 
-]) (SpawnFlowChart.toc)
+]) (SpawnIndex.toc)
 \tf@toc=\write3
-\openout3 = `SpawnFlowChart.toc'.
+\openout3 = `SpawnIndex.toc'.
 
  [3
 
-]
-(Document/AbstractPage.tex [4
+] (Document/AbstractPage.tex [4
 
-]) <Figures/BC.pdf, id=35, 433.62pt x 505.89pt>
+]) <Figures/BC.pdf, id=31, 433.62pt x 505.89pt>
 File: Figures/BC.pdf Graphic file (type pdf)
-
-<use Figures/BC.pdf>
-Package pdftex.def Info: Figures/BC.pdf used on input line 81.
+ <use Figures/BC.pdf>
+Package pdftex.def Info: Figures/BC.pdf used on input line 82.
 (pdftex.def)             Requested size: 390.0pt x 455.01889pt.
- [1
+Package microtype Info: Loading generic settings for font family
+(microtype)             `cmtt' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 
-] [2 <./Figures/BC.pdf>] [3] [4] [5] [6]
-(SpawnFlowChart.bbl [7]) 
+[1
+
+] [2 <./Figures/BC.pdf>] [3] [4] [5] [6] (SpawnIndex.bbl [7])
+
 AED: lastpage setting LastPage
-[8] (SpawnFlowChart.aux) ) 
+[8] (SpawnIndex.aux) ) 
 Here is how much of TeX's memory you used:
- 7053 strings out of 493334
- 106373 string characters out of 3139669
- 211765 words of memory out of 3000000
+ 7057 strings out of 493334
+ 106353 string characters out of 3139669
+ 211803 words of memory out of 3000000
  10325 multiletter control sequences out of 15000+200000
- 16342 words of font info for 100 fonts, out of 3000000 for 9000
+ 16732 words of font info for 102 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,13n,45p,425b,340s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\grinnellm\AppData\Local\MiKTeX\2.9\fonts\p
-k\ljfour\jknappen\ec\dpi600\tcrm1200.pk><C:/Applications/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmbx10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmbxti10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi1
-0.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:
-/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Applicati
-ons/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Applications/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Applications/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmr17.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmr7.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmr8.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/A
-pplications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Applicatio
-ns/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Applications/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Applications/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on SpawnFlowChart.pdf (14 pages, 611163 bytes).
+ 43i,13n,45p,421b,339s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\grinnellm\AppData\Local\MiKTeX\2.9\fonts\pk\lj
+four\jknappen\ec\dpi600\tcrm1200.pk><C:/Applications/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmbx10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+bxti10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pf
+b><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/App
+lications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Applications/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Applications/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Applications/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr17.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmr7.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmr8.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+><C:/Applications/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Appli
+cations/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Applications/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Applications/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on SpawnIndex.pdf (14 pages, 596032 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 20496 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 22032 words of extra memory for PDF output out of 24883 (max. 10000000)
 
