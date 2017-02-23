@@ -1,0 +1,65 @@
+% General layout parameters for all pages:
+\renewcommand{\topfraction}{0.9}  % Max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}  % Max fraction of floats at bottom
+
+% Parameters for text pages (not float pages):
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}  % 2 may work better
+\setcounter{dbltopnumber}{2}  % for 2-column pages
+\renewcommand{\dbltopfraction}{0.9}  % Fit big float above 2-col. text
+\renewcommand{\textfraction}{0.07}  % Allow minimal text w. figs
+
+% Parameters for float pages (not text pages):
+\renewcommand{\floatpagefraction}{0.85}  % Require fuller float pages (<topfraction)
+\renewcommand{\dblfloatpagefraction}{0.7}  % Require fuller float pages
+
+% Line numbers don't like equations: this is a fix
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+     {\linenomath\csname old#1\endcsname}%
+     {\csname oldend#1\endcsname\endlinenomath}}% 
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}}%
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+}
+
+% Load packages
+\RequirePackage{fancyhdr}  % Make nice headers
+\RequirePackage{graphicx}  % Import figures
+\RequirePackage{booktabs}  % Nicer table formatting
+\RequirePackage{textcomp}  % Prevents two warnings in gensymb
+\RequirePackage{gensymb}  % Symbols for math and text
+\RequirePackage{lineno}  % Number lines (editing)
+\RequirePackage{longtable}  % Long tables (multi-page)
+\RequirePackage{amsmath}  % Math facilities
+\RequirePackage{microtype}  % Better type handling
+\RequirePackage{url}  % Format website addresses
+\RequirePackage[authoryear]{natbib}  % Bibliography
+\RequirePackage{setspace}  % Extra space between lines (editing)
+\RequirePackage{lastpage}  % Count total number of pages
+%\RequirePackage[nottoc, notbib]{tocbibind}  % Add index to TOC
+\RequirePackage{hanging}  % Hanging paragraphs (i.e., citations)
+\RequirePackage{placeins}  % Better float placement
+\RequirePackage{flafter}  % Floats after their cross-reference
+%\RequirePackage{sectsty}  % Change section formatting
+\RequirePackage[english]{babel}  % Typographics and hyphenation
+%\RequirePackage{textcase}  % Case options for title
+\RequirePackage[labelsep=period]{caption}  % Dots in captions
+\RequirePackage[latin1]{inputenc}  % French symbols
+\RequirePackage{calc}  % Text length calculations
+
+% Update definitions
+\renewcommand{\headrulewidth}{0pt}  % No header line
+\bibpunct{(}{)}{;}{a}{}{,}  % Punctuation for citations
+\fancyhead{}  % No header
+\sloppy  % No text in margins (line length)
