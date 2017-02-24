@@ -6,11 +6,13 @@
 % Custom DFO Technical Reports
 \usepackage{techreport}  
 
-% New definitions: title, year, number, authors, etc
-% Note: put words in math mode to avoid case changes (i.e., species names)
+% New definitions: Title, year, report number
+% Note: put words in math mode to prevent case changes (i.e., species names)
 \newcommand{\trTitle}{Calculating spawn indices for Pacific herring ($Clupea~pallasii$) in British Columbia, Canada}
 \newcommand{\trYear}{2017}
 \newcommand{\trReportNum}{XXXX}
+
+% New difinitions: Author info
 \newcommand{\trAuthALong}{Matthew H.~Grinnell}
 \newcommand{\trAuthBLong}{Other Authors}  % Jaclyn S.~Cleary, Matt Thompson
 \newcommand{\trAuthABack}{Grinnell, M.\,H.}
@@ -19,7 +21,6 @@
 \newcommand{\trAuthBEmail}{\texttt{Other.Authors@dfo-mpo.gc.ca}}  % Jaclyn.Cleary
 \newcommand{\trAuthAPhone}{(250)~756.7055}
 \newcommand{\trAuthBPhone}{(250)~765.XXXX}  % 7321
-%\newcommand{\thisTitle}{This is a test title clupea pallasii}
 
 % New definition: Address
 \newcommand{\trAddy}{Fisheries and Oceans Canada\\
@@ -28,10 +29,11 @@ Pacific Biological Station\\
 3190 Hammond Bay Road\\
 Nanaimo, BC \enskip V9T 6N7}
 
-% New definition: build the citation
-\newcommand{\trNumPagesRoman}{\pageref{TRlastRoman}}
-\newcommand{\trNumPagesArabic}{\pageref{LastPage}}
-\newcommand{\trReference}{\trAuthABack{} and \trAuthBBack{} \trYear{}. \trTitle{}. Can. Tech. Rep. Fish. Aquat. Sci. \trReportNum{}: \trNumPagesRoman{} + \trNumPagesArabic{} p.}
+% New definition: Citation
+\newcommand{\trReference}{
+\begin{hangparas}{1em}{1}
+\trAuthABack{} and \trAuthBBack{} \trYear{}. \trTitle{}. Can. Tech. Rep. Fish. Aquat. Sci. \trReportNum{}: \pageref{TRlastRoman}{} + \pageref{LastPage}{} p.
+\end{hangparas}}
 
 % Set document options
 %\linenumbers  % For drafts
@@ -39,6 +41,13 @@ Nanaimo, BC \enskip V9T 6N7}
 
 % Let it begin
 \begin{document}
+
+% Sections in capitals
+\renewcommand\listfigurename{LIST OF FIGURES}
+\renewcommand\listtablename{LIST OF TABLES}
+
+% Footnote symbols in front matter
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
 
 %%%% Front matter %%%%%
 
@@ -48,11 +57,14 @@ Nanaimo, BC \enskip V9T 6N7}
 \input{Document/InsideCoverPage.tex}  % Inside cover page
 \input{Document/ColophonPage.tex}  % Colophon page
 \tableofcontents \clearpage  % Table of contents page
+\listoffigures \listoftables \clearpage  % Lists of figures and tables (optional)
 \input{Document/AbstractPage.tex}  % Abstact and resume page
 
 % Settings for the main document
 \pagenumbering{arabic}  % Regular page numbers
 \thispagestyle{empty}  % No page number on first page
+\renewcommand*{\thefootnote}{\arabic{footnote}}  % Back to numeric footnotes
+\setcounter{footnote}{0}  % And start at 1
 
 %%%%% Main document %%%%%
 
@@ -81,16 +93,31 @@ Bed widths are used to calculate the spawn index for surface surveys.
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{Figures/BC.pdf}
-\caption{Boundaries for the British Columbia Pacific herring stock assessment regions (SARs): there are five major SARs (Haida Gwaii, HG; Prince Rupert District, PRD; Central Coast, CC; Strait of Georgia, SoG; and West Coast Vancouver Island, WCVI), and two minor SARs (Area 27, A27; and Area 2 West, A2W).}
+\caption[Boundaries for British Columbia Pacific herring stock assessment regions (SARs)]
+{Boundaries for British Columbia Pacific herring stock assessment regions (SARs): there are five major SARs (Haida Gwaii, HG; Prince Rupert District, PRD; Central Coast, CC; Strait of Georgia, SoG; and West Coast Vancouver Island, WCVI), and two minor SARs (Area 27, A27; and Area 2 West, A2W).}
 \label{figBC}
 \end{figure}
 
-The spawn index is calculated by the \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script \texttt{Spawn.R}, which pulls data from the spawn database (Ref?) and does the calculations described in the following sections.
+We use the \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script \texttt{Spawn.R} to calculate the spawn index.
+The script pulls data from the spawn database (Ref?), and does the calculations described in the following sections.
 Note that variable names in this document correspond to variable names in the \texttt{Spawn.R} script.
+
+\section{FECUNDITY}
+
+Female Pacific herring produce an average of 200 eggs per gram, g of total body weight \citep{Hay1985}.
+We assume that females account for 50\% of spawners, and we use the following fecundity conversion factor for eggs to tonnes, t, of spawners
+\begin{equation}
+\frac {1 \cdot 10^{8}~\text{eggs}} {\text{t}} = \frac{200~\text{eggs}} {\text{g}} \times 0.5 \times \frac{1 \cdot 10^{6}~\text{g}} {\text{t}} \enspace .
+\label{eqFecundityConv}
+\end{equation}
+Therefore, we divide eggs by $1 \cdot 10^{8}$ to determine spawning biomass in tonnes.
+%In order to avoid precision loss with large numbers -- is that the reason?
+Note that we report eggs in thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report. 
+We divide $\text{eggs} \cdot 10^{3}$ by $1 \cdot 10^{5}$ to determine spawning biomass in tonnes.
 
 \section{SURFACE SPAWN}
 
-Surface spawn surveys collect data along transects, and calculations are done at the transect, and spawn/bed level.
+Surface spawn surveys collect data along transects, and we do calculations at the transect, and spawn/bed level.
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
@@ -103,16 +130,19 @@ where $Layers$ is the number of egg layers on a given bottom type, and $Proporti
 At the transect level, the sum of $EggLyrs$ is $EggLyrsTotT$.
 That is to say, $EggLyrsTotT$ is the sum of $EggLyrs$ for all the bottom types within a given transect.
 For the time period when `Intensity' categories were recorded instead of estimating the number of egg layers, intensity is converted to $EggLyrsTotT$ (Table \ref{tabIntensity}).
-Surface egg density is \citep{SchweigertEtal1997}
+Surface egg density in thousands is \citep{SchweigertEtal1997}%
+\footnote{Contrary to the report, surface egg density calculations in \citet{SchweigertEtal1997} are in thousands, $\text{eggs} \cdot 10^{3} \cdot \text{m}^{-2}$ (J.~Schweigert, personal communication, 24 January 2017).}
 \begin{equation}
 EggDensT = EggLyrsTotT \times 212.218 + 14.698
 \label{eqEggDensSurf}
 \end{equation}
-where $EggDensT$ is in $\text{Eggs} \cdot \text{m}^{-2}$. 
+where $EggDensT$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$. 
 
 \begin{table}
 \centering
-\caption{Spawn intensity categories and associated egg layers for surface surveys for the periods 1928--1950, and 1951--1978 (Ref?).}
+\caption[Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys]
+{Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys for the periods 1928--1950, and 1951--1978 (Ref?).
+Note that the survey protocol was updated from five to nine intensity categories in 1951.}
 \begin{tabular}{ccr}
 \toprule
 \multicolumn{2}{c}{Intensity category} & \\
@@ -136,25 +166,25 @@ where $EggDensT$ is in $\text{Eggs} \cdot \text{m}^{-2}$.
 \subsection{SPAWN/BED LEVEL CALCULATIONS}
 
 At the spawn/bed level, the mean of $EggDensT$ is $EggDensMeanS$.
-Two other metrics are required at the spawn/bed level: the spawn/bed length $Length$ and width $WidthS$, both in metres.%
-\footnote{$WidthS$ is set to the first non-missing value from the bed width, section width, region width, or observed width (in that order).}
+Two other metrics are required at the spawn/bed level: the spawn/bed length $Length$ and width $WidthS$, both in metres.
+We set $WidthS$ to the first non-missing value from the bed width, section width, region width, or observed width (in that order).
 The surface spawn index is
 \begin{equation}
-SurfSSB = \frac{EggDensMeanS \times Length \times WidthS} {100\,000}
+SurfSSB = \frac{EggDensMeanS \times Length \times WidthS} {1 \cdot 10^{5}}
 \label{eqBiomassSurf}
 \end{equation}
-where $SurfSSB$ is in (units?), based on fecundity estimates by \citet{Hay1985}: 200 eggs per gram of female herring, and assuming that females account for 50\% of spawners.
+where $SurfSSB$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \section{MACROCYSTIS SPAWN}
 
-Macrocystis spawn surveys collect data for individual plants, and calculations are done at the transect, and spawn levels.
+Macrocystis spawn surveys collect data for individual plants, and we do calculations at the transect, and spawn levels.
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
-Several metrics are collected at the transect level: transect length $LengthT$, transect width $WidthT$, and Macrocystis length $LengthMacroT$, all in metres, as well as transect area $AreaT$, in square metres.%
-\footnote{$LengthT$ is the width from shore (i.e., transect length), $WidthT$ is the transect width (i.e., $2\,\text{m}$), and $LengthMacroT$ is the length of the Macrocystis bed.
-$LengthT$ and $LengthMacroT$ will be the same if there is no recorded Macrocystis bed length.}
-In addition, metrics are calculated for mature Macrocystis plants: mean height $HeightMeanT$ in metres, mean egg layers $LayersMeanT$, total number of fronds $FrondsTotT$, and total number of plants $PlantsTotT$.
+Several metrics are collected at the transect level: transect length $LengthT$, transect width $WidthT$, and Macrocystis length $LengthMacroT$, all in metres, as well as transect area $AreaT$, in square metres.
+The `Macrocystis length' is the distance that the Macrocystis extends perpendicular to the shore (?).
+Note that $LengthT$ and $LengthMacroT$ will be the same if there is no recorded Macrocystis bed length.
+In addition, we calculate metrics for mature Macrocystis plants: mean height $HeightMeanT$ in metres, mean egg layers $LayersMeanT$, total number of fronds $FrondsTotT$, and total number of plants $PlantsTotT$.
 
 \subsection{SPAWN LEVEL CALCULATIONS}
 
@@ -168,7 +198,7 @@ FrondsPerPlantS = \frac{FrondsTotS} {PlantsTotS} \, .
 The number of eggs per plant in thousands is \citep{HaegeleSchweigert1990}
 \begin{multline}
 EggsPerPlantS = 0.073 \times LayersMeanS^{0.673} \times \\ 
-HeightMeanS^{0.932} \times FrondsPerPlantS^{0.703} \times 1\,000
+HeightMeanS^{0.932} \times FrondsPerPlantS^{0.703} \times 1 \cdot 10^{3}
 \label{eqEggsPerPlantMacro}
 \end{multline}
 where $EggsPerPlantS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{plant}^{-1}$. 
@@ -180,15 +210,15 @@ EggDensS = \frac{EggsPerPlantS \times PlantsTotS} {AreaTotS}
 where $EggDenS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The Macrocystis spawn index is
 \begin{equation}
-MacroSSB = \frac{EggDensS \times LengthMacroMeanS \times LengthMeanS} {100\,000}
+MacroSSB = \frac{EggDensS \times LengthMacroMeanS \times LengthMeanS} {1 \cdot 10^{5}}
 \label{eqBiomassMacro}
 \end{equation}
-where $MacroSSB$ is in (units?), based on fecundity estimates by \citet{Hay1985}.
+where $MacroSSB$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \section{UNDERSTORY SPAWN}
 
-Understory spawn surveys collect data in quadrats, and calculations are done at the quadrat, transect, and spawn levels.
-There are two separate calculations for egg density at the quadrat level: spawn on the bottom, and spawn on vegetation (i.e., algae).
+Understory spawn surveys collect data in quadrats, and we do calculations at the quadrat, transect, and spawn levels.
+We do two separate calculations for egg density at the quadrat level: spawn on the bottom, and spawn on vegetation (i.e., algae).
 
 \subsection{QUADRAT LEVEL CALCULATIONS}
 
@@ -197,13 +227,13 @@ Bottom egg density in thousands is \citep{HaegeleEtal1979}
 EggsDBot = 340 \times BotLayers \times BotProp
 \label{eqEggDensUnderB}
 \end{equation}
-where $BotLayers$ is the number of egg layers on the bottom, $BotProp$ is the proporiton of the bottom covered in spawn, and $EggsDBot$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
+where $BotLayers$ is the number of egg layers on the bottom, $BotProp$ is the proportion of the bottom covered in spawn, and $EggsDBot$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 Vegetation egg density in thousands is \citep{Schweigert2005}
 \begin{multline}
 EggsDVeg = 600.567 \times VegLayers^{0.6355} \times VegProp^{1.413} \times V \times 1.0512
 \label{eqEggDensUnderV}
 \end{multline}
-where $VegLayers$ is the numer of egg layers on vegetation, $VegProp$ is the proportion of the bottom covered by the vegetation type, $V$ is the vegetation coefficient (Table \ref{tabVegTypes}), and $EggsDVeg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
+where $VegLayers$ is the number of egg layers on vegetation, $VegProp$ is the proportion of the bottom covered by the vegetation type, $V$ is the vegetation coefficient (Table \ref{tabVegTypes}), and $EggsDVeg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The total linear weighted understory egg density in thousands is%
 \footnote{Explain why we calculate weighted egg density, $EggDensWtQ$.
 Is it because transects are different lengths (which we call widths)?}
@@ -211,13 +241,13 @@ Is it because transects are different lengths (which we call widths)?}
 EggDensWtQ = \left( EggsDBot + EggsDVeg \right) \times Width
 \label{eqEggDensWtUnder}
 \end{equation}
-where $Width$ is the transect width in metres,%
-\footnote{$Width$ may be expanded in certain years to account for footrope expansion when wet.}
-and $EggDensWtQ$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-1}$.
+where $Width$ is the transect width in metres, and $EggDensWtQ$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-1}$.
+Note that we expand $Width$ in certain years to account for footrope expansion when wet, if applicable.
 
 \begin{table}
 \centering
-\caption{Vegetation (i.e., algae) types and coefficients, $V$, for estimating egg density \citep{Schweigert2005}.}
+\caption[Vegetation (i.e., algae) types and coefficients for Pacific herring understory spawn surveys]
+{Vegetation (i.e., algae) types and coefficients, $V$ for Pacific herring understory spawn surveys \citep{Schweigert2005}.}
 \begin{tabular}{lr}
 \toprule
 Vegetation type & Coefficient, $V$\\
@@ -241,9 +271,10 @@ At the transect level, the mean $EggDensWtQ$ is $EggDensWtMeanT$.
 
 \subsection{SPAWN LEVEL CALCULATIONS}
 
-At the spawn level, the sum of transect widths $Width$ is $WidthTotS$, the mean of $Width$ is $WidthMeanS$, and the vegetation length is $VegLengthS$, all in metres.%
-\footnote{$VegLength$ will be equal to the transect length if there is no recorded vegetation length.} 
-Also, the sum of $EggDensWtMeanT$ is $EggDensWtTotS$.
+At the spawn level, the sum of transect widths $Width$ is $WidthTotS$, the mean of $Width$ is $WidthMeanS$, and the vegetation length is $VegLengthS$, all in metres.
+The `vegetation length' is the distance that the vegetation extends perpendicular to the shore (?).
+Note that $VegLength$ will be equal to the transect length if there is no recorded vegetation length.
+The sum of $EggDensWtMeanT$ is $EggDensWtTotS$.
 Understory egg density is 
 \begin{equation}
 EggDensWtS = \frac{EggDensWtTotS} {WidthTotS}
@@ -252,10 +283,10 @@ EggDensWtS = \frac{EggDensWtTotS} {WidthTotS}
 where $EggDensWtS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The understory spawn index is
 \begin{equation}
-UnderSSB = \frac{EggDensWtS \times VegLengthS \times WidthMeanS} {100\,000}
+UnderSSB = \frac{EggDensWtS \times VegLengthS \times WidthMeanS} {1 \cdot 10^{5}}
 \label{eqBiomassUnder}
 \end{equation}
-where $UnderSSB$ is in (units?), based on fecundity estimates by \citet{Hay1985}.
+where $UnderSSB$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \section{TOTAL SPAWN}
 
@@ -264,11 +295,11 @@ The total spawn index for each spawn is
 TotalSSB = SurfSSB + MacroSSB + UnderSSB
 \label{eqTotalSSB}
 \end{equation}
-where $TotalSSB$ is in (units?).
+where $TotalSSB$ is in tonnes.
 
 \section{ACKNOWLEDGEMENTS}
 
-Keep in mind the people we want to thank:
+Keep in mind the people we may want to thank:
 \begin{itemize}
 \item Jake Schweigert
 \end{itemize}
