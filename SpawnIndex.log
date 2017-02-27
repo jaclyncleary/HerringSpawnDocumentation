@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.23)  24 FEB 2017 15:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.23)  27 FEB 2017 10:54
 entering extended mode
 **./SpawnIndex.tex
 (SpawnIndex.tex
@@ -668,13 +668,13 @@ Package pdftex.def Info: Figures/BC.pdf used on input line 95.
 AED: lastpage setting LastPage
 [8] (SpawnIndex.aux) ) 
 Here is how much of TeX's memory you used:
- 7706 strings out of 493334
- 116659 string characters out of 3139669
- 219931 words of memory out of 3000000
- 10911 multiletter control sequences out of 15000+200000
+ 7707 strings out of 493334
+ 116672 string characters out of 3139669
+ 219933 words of memory out of 3000000
+ 10912 multiletter control sequences out of 15000+200000
  67665 words of font info for 113 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,13n,45p,347b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,13n,45p,347b,366s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Applications/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.
 enc}{C:/Applications/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Applicatio
 ns/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Applications/MiKTeX 2.9/fonts/en
@@ -693,7 +693,7 @@ fonts/type1/public/lm/lmri10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public
 X 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/p
 ublic/lm/lmtt10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pf
 b>
-Output written on SpawnIndex.pdf (15 pages, 708382 bytes).
+Output written on SpawnIndex.pdf (15 pages, 708392 bytes).
 PDF statistics:
  141 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
