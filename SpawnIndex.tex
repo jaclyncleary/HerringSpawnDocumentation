@@ -90,8 +90,8 @@ Underwater SCUBA surveys have been used for all major spawns since 1988, and are
 Herring spawn surveys began in 1928, but are considered incomplete prior to 1937 because many potential areas were not surveyed (Ref?).
 
 Herring spawn survey observations have a nested hierarchical structure: quadrats are nested within transects, transects are nested within spawns, and spawns are nested within locations.
-For stock assessment purposes, locations are nested within sections, sections are nested within statistical areas, and statistical areas are nested within regions.
-There are five major and two minor stock assessment regions (SARs) in BC (Figure \ref{figBC}).
+For stock assessment purposes, locations are nested within sections, sections are nested within statistical areas, and statistical areas are nested within five major and two minor stock assessment regions (SARs) in BC.
+The major SARs are Haida Gwaii, Prince Rupert District, Central Coast, Strait of Georgia, and West Coast Vancouver Island; the minor SARs are Area 27, and Area 2 West (Figure \ref{figBC}).
 Another level of data structure is `beds', which are habitat features as opposed to distinct spatial areas.
 Bed widths are used to calculate the spawn index for surface surveys.
 
@@ -175,10 +175,10 @@ Two other metrics are required at the spawn/bed level: the spawn/bed length $Len
 We set $WidthS$ to the first non-missing value from the bed width, section width, region width, or observed width (in that order).
 The surface spawn index is
 \begin{equation}
-SurfSSB = \frac{EggDensMeanS \times Length \times WidthS} {1 \cdot 10^{5}}
+SurfSI = \frac{EggDensMeanS \times Length \times WidthS} {1 \cdot 10^{5}}
 \label{eqBiomassSurf}
 \end{equation}
-where $SurfSSB$ is in tonnes, based on Equation \ref{eqFecundityConv}.
+where $SurfSI$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \subsection{MANUAL CORRECTIONS}
 
@@ -227,10 +227,10 @@ EggDensS = \frac{EggsPerPlantS \times PlantsTotS} {AreaTotS}
 where $EggDenS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The Macrocystis spawn index is
 \begin{equation}
-MacroSSB = \frac{EggDensS \times LengthMacroMeanS \times LengthMeanS} {1 \cdot 10^{5}}
+MacroSI = \frac{EggDensS \times LengthMacroMeanS \times LengthMeanS} {1 \cdot 10^{5}}
 \label{eqBiomassMacro}
 \end{equation}
-where $MacroSSB$ is in tonnes, based on Equation \ref{eqFecundityConv}.
+where $MacroSI$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \section{UNDERSTORY SPAWN}
 
@@ -300,19 +300,19 @@ EggDensWtS = \frac{EggDensWtTotS} {WidthTotS}
 where $EggDensWtS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The understory spawn index is
 \begin{equation}
-UnderSSB = \frac{EggDensWtS \times VegLengthS \times WidthMeanS} {1 \cdot 10^{5}}
+UnderSI = \frac{EggDensWtS \times VegLengthS \times WidthMeanS} {1 \cdot 10^{5}}
 \label{eqBiomassUnder}
 \end{equation}
-where $UnderSSB$ is in tonnes, based on Equation \ref{eqFecundityConv}.
+where $UnderSI$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \section{TOTAL SPAWN}
 
 The total spawn index for each spawn is
 \begin{equation}
-TotalSSB = SurfSSB + MacroSSB + UnderSSB
-\label{eqTotalSSB}
+TotalSI = SurfSI + MacroSI + UnderSI
+\label{eqTotalSI}
 \end{equation}
-where $TotalSSB$ is in tonnes.
+where $TotalSI$ is in tonnes.
 As previously mentioned, the spawn index must be scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} before it can be considered to be an estimate of spawning stock biomass.
 
 \section{ACKNOWLEDGEMENTS}
