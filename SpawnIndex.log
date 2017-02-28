@@ -1,4 +1,3 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.23)  27 FEB 2017 10:54
 entering extended mode
 **./SpawnIndex.tex
 (SpawnIndex.tex
@@ -451,26 +450,26 @@ LaTeX Info: Redefining \addtolength on input line 81.
 )) (SpawnIndex.aux)
 \openout1 = `SpawnIndex.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 48.
 
 ("C:\Applications\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 43.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 48.
 
 ("C:\Applications\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -535,16 +534,16 @@ G,.JBIG2,.JB2,.eps]
 )
 \symgns@font=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
-(Font)                  TS1/lmr/m/n --> TS1/lmr/bx/n on input line 43.
-Package gensymb Info: Math companion symbols declared on input line 43.
-LaTeX Info: Redefining \degree on input line 43.
-LaTeX Info: Redefining \celsius on input line 43.
+(Font)                  TS1/lmr/m/n --> TS1/lmr/bx/n on input line 48.
+Package gensymb Info: Math companion symbols declared on input line 48.
+LaTeX Info: Redefining \degree on input line 48.
+LaTeX Info: Redefining \celsius on input line 48.
 Package gensymb Info: Using text companion symbols for \degree, \celsius and \p
-erthousand on input line 43.
-LaTeX Info: Redefining \ohm on input line 43.
-Package gensymb Info: Using \textohm for \ohm on input line 43.
-Package gensymb Info: Using \textmu for \micro on input line 43.
-LaTeX Info: Redefining \microtypecontext on input line 43.
+erthousand on input line 48.
+LaTeX Info: Redefining \ohm on input line 48.
+Package gensymb Info: Using \textohm for \ohm on input line 48.
+Package gensymb Info: Using \textmu for \micro on input line 48.
+LaTeX Info: Redefining \microtypecontext on input line 48.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -561,7 +560,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 43.
+(lastpage)             ! on input line 48.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
@@ -659,20 +658,17 @@ Package microtype Info: Loading generic settings for font family
 <Figures/BC.pdf, id=38, 433.62pt x 505.89pt>
 File: Figures/BC.pdf Graphic file (type pdf)
  <use Figures/BC.pdf>
-Package pdftex.def Info: Figures/BC.pdf used on input line 95.
+Package pdftex.def Info: Figures/BC.pdf used on input line 100.
 (pdftex.def)             Requested size: 390.0pt x 455.01889pt.
  [1
 
-] [2 <./Figures/BC.pdf>] [3] [4] [5] [6] [7] (SpawnIndex.bbl)
+] [2 <./Figures/BC.pdf>] [3] [4] [5] [6] [7] (SpawnIndex.bbl [8])
 
 AED: lastpage setting LastPage
-[8] (SpawnIndex.aux) ) 
+[9] (SpawnIndex.aux) ) 
 Here is how much of TeX's memory you used:
- 7707 strings out of 493334
- 116672 string characters out of 3139669
- 219933 words of memory out of 3000000
- 10912 multiletter control sequences out of 15000+200000
- 67665 words of font info for 113 fonts, out of 3000000 for 9000
+ 219941 words of memory out of 3000000
+ 10913 multiletter control sequences out of 15000+200000
  1141 hyphenation exceptions out of 8191
  43i,13n,45p,347b,366s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Applications/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.
@@ -693,9 +689,8 @@ fonts/type1/public/lm/lmri10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public
 X 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/p
 ublic/lm/lmtt10.pfb><C:/Applications/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pf
 b>
-Output written on SpawnIndex.pdf (15 pages, 708392 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
+ 144 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21008 words of extra memory for PDF output out of 24883 (max. 10000000)
 
