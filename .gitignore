@@ -47,7 +47,10 @@ Temporary Items
 .apdisk
 
 # Custom files/folders
-SpawnIndex.pdf
-SpawnIndex.lot
+SpawnIndex.bbl
 SpawnIndex.lof
+SpawnIndex.log
+SpawnIndex.lot
 SpawnIndex.toc
+SpawnIndex.xwm
+SpawnIndex.pdf
