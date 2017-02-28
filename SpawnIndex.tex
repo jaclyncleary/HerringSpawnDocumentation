@@ -1,3 +1,8 @@
+%%%%% TODO %%%%%
+
+% 1. Authors: Matt G, Jaclyn C, Matt T, others?
+% 2. Correct values in `Manual updates' to those in the spawn intensity table
+
 %%%%% Preamble %%%%%
 
 % Set document style and font size
@@ -14,13 +19,13 @@
 
 % New difinitions: Author info
 \newcommand{\trAuthALong}{Matthew H.~Grinnell}
-\newcommand{\trAuthBLong}{Other Authors}  % Jaclyn S.~Cleary, Matt Thompson
+\newcommand{\trAuthBLong}{Other Authors}
 \newcommand{\trAuthABack}{Grinnell, M.\,H.}
-\newcommand{\trAuthBBack}{Authors, O.}  % Cleary, J.\,S.
+\newcommand{\trAuthBBack}{Authors, O.}
 \newcommand{\trAuthAEmail}{\texttt{Matthew.Grinnell@dfo-mpo.gc.ca}}
-\newcommand{\trAuthBEmail}{\texttt{Other.Authors@dfo-mpo.gc.ca}}  % Jaclyn.Cleary
+\newcommand{\trAuthBEmail}{\texttt{Other.Authors@dfo-mpo.gc.ca}}
 \newcommand{\trAuthAPhone}{(250)~756.7055}
-\newcommand{\trAuthBPhone}{(250)~765.XXXX}  % 7321
+\newcommand{\trAuthBPhone}{(250)~765.XXXX}
 
 % New definition: Address
 \newcommand{\trAddy}{Fisheries and Oceans Canada\\
@@ -130,7 +135,7 @@ At the transect level, the sum of $EggLyrs$ is $EggLyrsTotT$.
 That is to say, $EggLyrsTotT$ is the sum of $EggLyrs$ for all the bottom types within a given transect.
 For the time period when `Intensity' categories were recorded instead of estimating the number of egg layers, intensity is converted to $EggLyrsTotT$ (Table \ref{tabIntensity}).
 Surface egg density in thousands is \citep{SchweigertEtal1997}%
-\footnote{Contrary to the report, surface egg density calculations in \citet{SchweigertEtal1997} are in thousands, $\text{eggs} \cdot 10^{3} \cdot \text{m}^{-2}$ (J.~Schweigert, personal communication, 24 January 2017).}
+\footnote{Notwithstanding the units provided in \citet{SchweigertEtal1997}, surface egg density is in thousands ($\text{eggs} \cdot 10^{3} \cdot \text{m}^{-2}$; J.~Schweigert, personal communication, 24 February 2017).}
 \begin{equation}
 EggDensT = EggLyrsTotT \times 212.218 + 14.698
 \label{eqEggDensSurf}
@@ -173,6 +178,18 @@ SurfSSB = \frac{EggDensMeanS \times Length \times WidthS} {1 \cdot 10^{5}}
 \label{eqBiomassSurf}
 \end{equation}
 where $SurfSSB$ is in tonnes, based on Equation \ref{eqFecundityConv}.
+
+\subsection{MANUAL CORRECTIONS}
+
+To correct errors in the surface spawn database, we make \ref{enumLast} manual updates to $EggLyrsTotT$ based on specific criteria (J.~Schweigert, personal communication, 21 February 2017):
+\begin{enumerate}
+\item Update $EggLyrsTotT$ to 2.15 for the 15 records in the year 1979, statistical area 2, and with spawn intensity 4;
+\item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with spawn intensity 0;
+\item Update $EggLyrsTotT$ to 0.55 for the 4 records in the year 1981, statistical area 24, and with $EggLyrsTotT = 0$;
+\item Update $EggLyrsTotT$ to 1.34 for the 7 records in the year 1982, statistical area 23, and with spawn intensity 3;
+\item Update $EggLyrsTotT$ to 2.33 for the 41 records in the year 1984, statistical area 24, and with spawn intensity 0; and
+\item Update $EggLyrsTotT$ to 2.98 for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$. \label{enumLast}
+\end{enumerate}
 
 \section{MACROCYSTIS SPAWN}
 
@@ -298,9 +315,10 @@ where $TotalSSB$ is in tonnes.
 
 \section{ACKNOWLEDGEMENTS}
 
-Keep in mind the people we may want to thank:
+People we may want to thank:
 \begin{itemize}
-\item Jake Schweigert
+\item Jake Schweigert for background and reasoning re the manual corrections
+\item Ashleen Benson (for helping translate the database calculations to \textbf{R} code)?
 \end{itemize}
 
 % References
