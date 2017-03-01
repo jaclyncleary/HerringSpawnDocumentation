@@ -63,7 +63,7 @@ Nanaimo, BC \enskip V9T 6N7}
 \input{Document/InsideCoverPage.tex}  % Inside cover page
 \input{Document/ColophonPage.tex}  % Colophon page
 \tableofcontents \clearpage  % Table of contents page
-%\listoffigures \listoftables \clearpage  % Lists of figures and tables (optional)
+\listoffigures \listoftables \clearpage  % Lists of figures and tables (optional)
 \input{Document/AbstractPage.tex}  % Abstact and resume page
 
 % Settings for the main document
@@ -110,7 +110,7 @@ Note that variable names in this document correspond to variable names in the \t
 This report is divided into sections: in each section we describe the spawn index calculations for one of the aforementioned spawn survey types.
 Within each section, each level of spatial aggregation (e.g., calculations at the quadrat, or transect level) is in a separate subsection.
 However, we first quantify Pacific herring fecundity, which is critical to calculating the spawn index.
-Finally, in the last section, we combine the three spawn indices to a total annual spawn index by SAR, which is the appropriate scale for Pacific herring stock assessments in BC.
+Finally, in the last section, we combine the three spawn indices to a total annual spawn index by SAR, which is the scale for Pacific herring stock assessments in BC.
 
 \section{FECUNDITY}
 
@@ -137,7 +137,7 @@ EggLyrs = Layers \times Proportion
 where $Layers$ is the number of egg layers on a given bottom type, and $Proportion$ is the proportion of the transect covered by the bottom type.
 At the transect level, the sum of $EggLyrs$ is $EggLyrsTotT$.
 That is to say, $EggLyrsTotT$ is the sum of $EggLyrs$ for all the bottom types within a given transect.
-For the time period when `Intensity' categories were recorded instead of estimating the number of egg layers, intensity is converted to $EggLyrsTotT$ (Table \ref{tabIntensity}).
+For the time period when spawn `intensity' categories were recorded instead of estimating the number of egg layers, intensity is converted to $EggLyrsTotT$ (Table \ref{tabIntensity}).
 Surface egg density in thousands is \citep{SchweigertEtal1997}%
 \footnote{Notwithstanding the units provided in \citet{SchweigertEtal1997}, surface egg density is in thousands ($\text{eggs} \cdot 10^{3} \cdot \text{m}^{-2}$; J.~Schweigert, personal communication, 24 February 2017).}
 \begin{equation}
@@ -185,7 +185,12 @@ where $SurfSI$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \subsection{MANUAL CORRECTIONS}
 
-To correct errors in the surface spawn database, we make several manual updates to $EggLyrsTotT$ for the following records:
+There are several survey records with missing or inaccurate egg layer information in the surface spawn database.
+We update $EggLyrsTotT$ for these records... why/how  (J.~Schweigert, personal communication, 21 February 2017)?
+For example, in some cases we update $EggLyrsTotT$ based on `intensity' (Table \ref{tabIntensity}), which was sometimes recorded after being officially discontinued in 1978.
+%Missing or inaccurate egg layer information (i.e., \#~\ref{up1979}, \ref{up1981}, \ref{up1982a}).
+%One update (\#~\ref{up1962}) changes the intensity from 0 to 1 to reflect...?
+We update the following records:
 \begin{enumerate}
 \item Update $EggLyrsTotT$ to 2.1496 for the 15 records in the year 1979, statistical area 2, and with intensity 4; \label{up1979}
 \item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with intensity 0; \label{up1962}
@@ -194,12 +199,6 @@ To correct errors in the surface spawn database, we make several manual updates 
 \item Update $EggLyrsTotT$ to 2.33 for the 41 records in the year 1984, statistical area 24, and with intensity 0; and \label{up1984}
 \item Update $EggLyrsTotT$ to 2.98 for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$. \label{up1982b}
 \end{enumerate}
-
-Essentially, these updates correct missing or inaccurate egg layer information (J.~Schweigert, personal communication, 21 February 2017).
-For example, some updates use spawn intensity values (Table \ref{tabIntensity}) to determine egg layers because of missing or inaccurate egg layer information (i.e., \#~\ref{up1979}, \ref{up1981}, \ref{up1982a}).
-This is possible because intensity values were still reported after 1978 in some cases.
-One update (\#~\ref{up1962}) changes the intensity from 0 to 1 to reflect...?
-
 
 \section{MACROCYSTIS SPAWN}
 

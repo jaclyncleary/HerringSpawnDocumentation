@@ -1,4 +1,4 @@
-# Documentation for the Pacific herring spawn index
+# Documentation for the Pacific herring spawn index in BC
 
 This report describes the calculations used to convert spawn survey observations (e.g., number of egg layers, extent of spawn) to the spawn index for Pacific herring (*Clupea pallasii*) in British Columbia (BC), Canada.
 There are three types of spawn survey observations: surface survey observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
