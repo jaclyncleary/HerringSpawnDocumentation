@@ -6,4 +6,4 @@ Data from these three survey types are combined to develop an overal annual spaw
 Note that the "spawn index" must be scaled by the spawn survey scaling parameter *q* before it is considered to be an estimate of spawning stock biomass.
 The spawn index is one component of Pacific herring stock assessments in BC.
 
-This report is formatted to comply with the requirements for a "DFO Technical Report."
+This report is formatted to comply with the requirements for the series "Canadian Technical Report of Fisheries and Aquatic Sciences."

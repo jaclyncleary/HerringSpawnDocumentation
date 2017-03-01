@@ -1,8 +1,8 @@
 %%%%% TODO %%%%%
 
 % 1. Authors: Matt G, Jaclyn C, Matt T, others?
-% 2. Correct values in `Manual updates' to those in the spawn intensity table
 % 3. Author email(s) and/or phone number(s) required?
+% 4. More description/justification for manual updates
 
 %%%%% Preamble %%%%%
 
@@ -107,6 +107,11 @@ We use the \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script \texttt{Spawn.R} to ca
 The script pulls data from the spawn database (Ref?), and does the calculations described in the following sections.
 Note that variable names in this document correspond to variable names in the \texttt{Spawn.R} script.
 
+This report is divided into sections: in each section we describe the spawn index calculations for one of the aforementioned spawn survey types.
+Within each section, each level of spatial aggregation (e.g., calculations at the quadrat, or transect level) is in a separate subsection.
+However, we first quantify Pacific herring fecundity, which is critical to calculating the spawn index.
+Finally, in the last section, we combine the three spawn indices to a total annual spawn index by SAR, which is the appropriate scale for Pacific herring stock assessments in BC.
+
 \section{FECUNDITY}
 
 Female Pacific herring produce an average of 200 eggs per gram, g of total body weight \citep{Hay1985}.
@@ -115,8 +120,6 @@ We assume that females account for 50\% of spawners, and we use the following fe
 \frac {1 \cdot 10^{8}~\text{eggs}} {\text{t}} = \frac{200~\text{eggs}} {\text{g}} \times 0.5 \times \frac{1 \cdot 10^{6}~\text{g}} {\text{t}} \enspace .
 \label{eqFecundityConv}
 \end{equation}
-%Therefore, we divide eggs by $1 \cdot 10^{8}$ to determine spawning biomass in tonnes.
-%In order to avoid precision loss with large numbers -- is that the reason?
 Note that we report eggs in thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report.
 Therefore, we divide $\text{eggs} \cdot 10^{3}$ by $1 \cdot 10^{5}$ to determine spawning biomass in tonnes.
 
@@ -182,15 +185,21 @@ where $SurfSI$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
 \subsection{MANUAL CORRECTIONS}
 
-To correct errors in the surface spawn database, we make \ref{enumLast} manual updates to $EggLyrsTotT$ for the following records (J.~Schweigert, personal communication, 21 February 2017):
+To correct errors in the surface spawn database, we make several manual updates to $EggLyrsTotT$ for the following records:
 \begin{enumerate}
-\item Update $EggLyrsTotT$ to 2.15 for the 15 records in the year 1979, statistical area 2, and with intensity 4;
-\item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with intensity 0;
-\item Update $EggLyrsTotT$ to 0.55 for the 4 records in the year 1981, statistical area 24, and with $EggLyrsTotT = 0$;
-\item Update $EggLyrsTotT$ to 1.34 for the 7 records in the year 1982, statistical area 23, and with intensity 3;
-\item Update $EggLyrsTotT$ to 2.33 for the 41 records in the year 1984, statistical area 24, and with intensity 0; and
-\item Update $EggLyrsTotT$ to 2.98 for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$. \label{enumLast}
+\item Update $EggLyrsTotT$ to 2.1496 for the 15 records in the year 1979, statistical area 2, and with intensity 4; \label{up1979}
+\item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with intensity 0; \label{up1962}
+\item Update $EggLyrsTotT$ to 0.5529 for the 4 records in the year 1981, statistical area 24, and with $EggLyrsTotT = 0$; \label{up1981}
+\item Update $EggLyrsTotT$ to 1.3360 for the 7 records in the year 1982, statistical area 23, and with intensity 3; \label{up1982a}
+\item Update $EggLyrsTotT$ to 2.33 for the 41 records in the year 1984, statistical area 24, and with intensity 0; and \label{up1984}
+\item Update $EggLyrsTotT$ to 2.98 for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$. \label{up1982b}
 \end{enumerate}
+
+Essentially, these updates correct missing or inaccurate egg layer information (J.~Schweigert, personal communication, 21 February 2017).
+For example, some updates use spawn intensity values (Table \ref{tabIntensity}) to determine egg layers because of missing or inaccurate egg layer information (i.e., \#~\ref{up1979}, \ref{up1981}, \ref{up1982a}).
+This is possible because intensity values were still reported after 1978 in some cases.
+One update (\#~\ref{up1962}) changes the intensity from 0 to 1 to reflect...?
+
 
 \section{MACROCYSTIS SPAWN}
 
@@ -313,6 +322,7 @@ TotalSI = SurfSI + MacroSI + UnderSI
 \label{eqTotalSI}
 \end{equation}
 where $TotalSI$ is in tonnes.
+For stock assessment purposes, the annual total spawn index is aggregated to the scale of the SAR.
 As previously mentioned, the spawn index must be scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} before it is considered to be an estimate of spawning stock biomass.
 
 \section{ACKNOWLEDGEMENTS}
