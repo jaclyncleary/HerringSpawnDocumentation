@@ -20,13 +20,11 @@
 
 % New difinitions: Author info
 \newcommand{\trAuthALong}{Matthew H.~Grinnell}
-\newcommand{\trAuthBLong}{Other Authors}
+\newcommand{\trAuthBLong}{Other Authors}  % Jaclyn, Matt T, ...
 \newcommand{\trAuthABack}{Grinnell, M.\,H.}
 \newcommand{\trAuthBBack}{Authors, O.}
-\newcommand{\trAuthAEmail}{\texttt{Matthew.Grinnell@dfo-mpo.gc.ca}}
-\newcommand{\trAuthBEmail}{\texttt{Other.Authors@dfo-mpo.gc.ca}}
-\newcommand{\trAuthAPhone}{(250)~756.7055}
-\newcommand{\trAuthBPhone}{(250)~765.XXXX}
+\newcommand{\trAuthADetails}{E-mail: \texttt{Matthew.Grinnell@dfo-mpo.gc.ca} $|$ telephone: (250)~756.7055}
+\newcommand{\trAuthBDetails}{E-mail: \texttt{Other.Authors@dfo-mpo.gc.ca} $|$ telephone: (250)~765.XXXX}
 
 % New definition: Address
 \newcommand{\trAddy}{Fisheries and Oceans Canada\\
@@ -38,7 +36,7 @@ Nanaimo, BC \enskip V9T 6N7}
 % New definition: Citation
 \newcommand{\trReference}{
 \begin{hangparas}{1em}{1}
-\trAuthABack{} and \trAuthBBack{} \trYear{}. \trTitle{}. Can. Tech. Rep. Fish. Aquat. Sci. \trReportNum{}: \pageref{TRlastRoman}{} + \pageref{LastPage}{} p.
+\trAuthABack{} and \trAuthBBack{} \trYear{}. \trTitle{}. Can. Tech. Rep. Fish. Aquat. Sci. \trReportNum{}: \pageref{TRlastRoman}{}\,+\,\pageref{LastPage}{}\,p.
 \end{hangparas}}
 
 % Set document options
@@ -76,12 +74,19 @@ Nanaimo, BC \enskip V9T 6N7}
 
 \section{INTRODUCTION}
 
-This report describes the calculations used to convert spawn survey observations (e.g., number of egg layers, extent of spawn) to the spawn index for Pacific herring (\!\emph{Clupea pallasii}) in British Columbia (BC), Canada.
-Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b}, and is therefore not an estimate of spawning stock biomass.
-The spawn index is one component of Pacific herring stock assessments in BC.
+This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent of spawn) to the spawn index for Pacific herring ($Clupea$ $pallasii$) in British Columbia (BC), Canada.
+The process and calculations described in this report have been documented elsewhere, in either published or informal internal documents.
+Our goal is to collect and simplify the details necessary to understanding how the spawn index is calculated.
+
+The motivation to document the spawn index calculations came when we translated the spawn index calculations from a \textbf{Microsoft Access} database to an \textbf{R} script \citeyearpar[RCT][]{R-3.3.2}, \texttt{Spawn.R}.
+We updated from a database to an \textbf{R} script for several reasons.
+First, the \textbf{R} script is open and transparent; it can be viewed and downloaded from \textbf{GitHub} (URL?).
+Second, the database has incidental calculations that make it overly complicated because it has been used for various purposes over several decades.
+And finally, the database is difficult to troubleshoot because most of its authors have retired.
 
 Spawn surveys collect the data used to calculate the spawn index.
-There are three types of spawn survey observations: surface survey observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
+Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
+There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 Understory observations have two components: spawn on the bottom, and spawn on vegetation (i.e., algae).
 Surface spawn surveys have the coarsest spatial resolution and greatest spatial extent of the three survey types (Ref?).
 Surface spawn surveys were the only survey type prior to 1988, and they are still used extensively for minor spawns because they are adequate for narrow spawns in shallow water (Ref?).
@@ -92,6 +97,7 @@ Herring spawn surveys began in 1928, but are considered incomplete prior to 1937
 Herring spawn survey observations have a nested hierarchical structure: quadrats are nested within transects, transects are nested within spawns, and spawns are nested within locations.
 For stock assessment purposes, locations are nested within sections, sections are nested within statistical areas, and statistical areas are nested within five major and two minor stock assessment regions (SARs) in BC.
 The major SARs are Haida Gwaii, Prince Rupert District, Central Coast, Strait of Georgia, and West Coast Vancouver Island; the minor SARs are Area 27, and Area 2 West (Figure \ref{figBC}).
+The spawn index is one component of Pacific herring stock assessments in BC.
 Another level of data structure is `beds', which are habitat features as opposed to distinct spatial areas.
 Bed widths are used to calculate the spawn index for surface surveys.
 
@@ -103,16 +109,17 @@ Bed widths are used to calculate the spawn index for surface surveys.
 \label{figBC}
 \end{figure}
 
-We use the \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script \texttt{Spawn.R} to calculate the spawn index.
-The script pulls data from the spawn database (Ref?), and does the calculations described in the following sections.
-Note that variable names in this document correspond to variable names in the \texttt{Spawn.R} script.
-
-This report is divided into sections: in each section we describe the spawn index calculations for one of the aforementioned spawn survey types.
+This report is divided into sections; in each section we describe the spawn index calculations for one of the three aforementioned spawn survey types: surface (\S~\ref{secSurf}), Macrocystis (\S~\ref{secMacro}), and understory (\S~\ref{secUnder}).
 Within each section, each level of spatial aggregation (e.g., calculations at the quadrat, or transect level) is in a separate subsection.
-However, we first quantify Pacific herring fecundity, which is critical to calculating the spawn index.
-Finally, in the last section, we combine the three spawn indices to a total annual spawn index by SAR, which is the scale for Pacific herring stock assessments in BC.
+However, we first quantify Pacific herring fecundity, which is critical to calculating the spawn index (\S~\ref{secFecund}).
+Finally, we combine the three spawn indices to get the total spawn index (\S~\ref{secTotal}).
 
-\section{FECUNDITY}
+Note that sections in this report correspond somewhat to functions in the \textbf{R} script, \texttt{Spawn.R}.
+For example, the `Surface spawn' section (\S~\ref{secSurf}) describes the \textbf{R} function \texttt{CalcSurfaceSpawn}.
+In addition, variable names in this report correspond to variable names in the script.
+Essentially, the \textbf{R} script imports data from the Pacific herring spawn database (Ref?), and does the calculations described in this report.
+
+\section{FECUNDITY}\label{secFecund}
 
 Female Pacific herring produce an average of 200 eggs per gram, g of total body weight \citep{Hay1985}.
 We assume that females account for 50\% of spawners, and we use the following fecundity conversion factor for eggs to tonnes, t, of spawners
@@ -123,7 +130,7 @@ We assume that females account for 50\% of spawners, and we use the following fe
 Note that we report eggs in thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report.
 Therefore, we divide $\text{eggs} \cdot 10^{3}$ by $1 \cdot 10^{5}$ to determine spawning biomass in tonnes.
 
-\section{SURFACE SPAWN}
+\section{SURFACE SPAWN}\label{secSurf}
 
 Surface spawn surveys collect data along transects, and we calculate spawn metrics at the transect, and spawn/bed level.
 
@@ -200,7 +207,7 @@ We update the following records:
 \item Update $EggLyrsTotT$ to 2.98 for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$. \label{up1982b}
 \end{enumerate}
 
-\section{MACROCYSTIS SPAWN}
+\section{MACROCYSTIS SPAWN}\label{secMacro}
 
 Macrocystis spawn surveys collect data for individual plants, and we calculate spawn metrics at the transect, and spawn levels.
 
@@ -240,7 +247,7 @@ MacroSI = \frac{EggDensS \times LengthMacroMeanS \times LengthMeanS} {1 \cdot 10
 \end{equation}
 where $MacroSI$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
-\section{UNDERSTORY SPAWN}
+\section{UNDERSTORY SPAWN}\label{secUnder}
 
 Understory spawn surveys collect data in quadrats, and we calculate spawn metrics at the quadrat, transect, and spawn levels.
 We calculate two separate estimates of egg density at the quadrat level: spawn on the bottom, and spawn on vegetation (i.e., algae).
@@ -313,7 +320,7 @@ UnderSI = \frac{EggDensWtS \times VegLengthS \times WidthMeanS} {1 \cdot 10^{5}}
 \end{equation}
 where $UnderSI$ is in tonnes, based on Equation \ref{eqFecundityConv}.
 
-\section{TOTAL SPAWN}
+\section{TOTAL SPAWN}\label{secTotal}
 
 The total spawn index for each spawn is
 \begin{equation}
@@ -321,9 +328,13 @@ TotalSI = SurfSI + MacroSI + UnderSI
 \label{eqTotalSI}
 \end{equation}
 where $TotalSI$ is in tonnes.
-For stock assessment purposes, the annual total spawn index is aggregated to the scale of the SAR.
-As previously mentioned, the spawn index must be scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} before it is considered to be an estimate of spawning stock biomass.
+For stock assessment purposes, the annual total spawn index is aggregated to the spatial scale of the SAR.
+As previously mentioned, the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
 
+%\section{AN EXAMPLE}
+%We could include a simple example where we work through the calculations step-by-step for each spawn survey type.
+%It would take some time/work to make this useful: show the input data, work through the calculations, results, etc.
+%
 \section{ACKNOWLEDGEMENTS}
 
 People we may want to thank:
