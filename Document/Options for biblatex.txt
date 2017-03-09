@@ -1,0 +1,57 @@
+##### SpawnIndex.tex - preamble #####
+
+% Custom reference library
+\addbibresource{C:/Grinnell/References/Grinnell.bib}
+
+
+##### SpawnInde.tex - after begin{document} #####
+
+% Bibliography formatting
+\DeclareFieldFormat*{title}{#1}  % Remove title formatting
+\DeclareFieldFormat*{volume}{\textbf{#1}}  % Volume in bold
+\DeclareFieldFormat*{number}{\mkbibparens{#1}}  % Parentheses around number/issue
+\DeclareFieldFormat*{pages}{#1}  % No p or pp before page numbers
+\DeclareNameAlias{sortname}{last-first}  % Sort by last name, first name
+\DeclareNameAlias{default}{last-first} % Authors: last name, first name
+
+% References
+\printbibliography
+
+
+##### techreport.sty #####
+
+%\RequirePackage[draft]{hyperref}  % Required for biblatex
+\RequirePackage[latin1]{inputenc}  % French symbols
+\RequirePackage{csquotes}  % Reqyured for biblatex
+\RequirePackage[backend=bibtex8,style=authoryear,maxbibnames=99,maxcitenames=2,giveninits=true,uniquename=init]{biblatex}  % Citations
+
+% Bibliography formatting
+\renewcommand{\finentrypunct}{}  % No trailing period
+\renewcommand{\intitlepunct}{ }  % Space between title and journal name
+\renewbibmacro{in:}{}  % No 'In' between title and journal name
+
+% Bibliography: colon after number, before pages
+\renewbibmacro*{volume+number+eid}{
+  \printfield{volume}
+  \printfield{number}
+  \printunit{\addcolon\addspace}
+}
+
+% Bibliography: No parentheses around year
+\makeatletter
+\ifcsundef{abx@macro@\detokenize{date+extrayear}}{%
+  }{%
+  \renewbibmacro*{date+extrayear}{%
+    \iffieldundef{year}{%
+      }{%
+      \addperiod\space
+      \printtext{\printdateextra}%
+    }%
+  }%
+}
+\makeatother
+
+##### TODO #####
+find/replace parencite* to citeyearpar
+fine/replace parencite to citep
+find/replace cite to textcite
