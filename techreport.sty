@@ -23,12 +23,7 @@
 \RequirePackage{lmodern}  % Nicer (c) symbol
 \RequirePackage{calc}  % Text length calculations
 \RequirePackage[authoryear]{natbib}  % Citations
-<<<<<<< HEAD
-\RequirePackage[draft]{hyperref}  % For clever references
-%\RequirePackage{refstyle/cleveref}
-=======
-\RequirePackage{cleveref}
->>>>>>> origin/master
+\RequirePackage[hidelinks]{hyperref}  % Better cross references
 
 % General layout parameters for all pages:
 \renewcommand{\topfraction}{0.9}  % Max fraction of floats at top
@@ -45,10 +40,6 @@
 % Parameters for float pages (not text pages):
 \renewcommand{\floatpagefraction}{0.85}  % Require fuller float pages
 \renewcommand{\dblfloatpagefraction}{0.7}  % Require fuller float pages
-
-% For better cross-references
-\newcommand*{\tabref}[1]{\tablename~\ref{#1}}
-\newcommand*{\figref}[1]{\figurename~\ref{#1}}
 
 % Line numbers don't like equations: this is a fix
 \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
