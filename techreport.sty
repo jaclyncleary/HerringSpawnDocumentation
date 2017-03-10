@@ -23,6 +23,8 @@
 \RequirePackage{lmodern}  % Nicer (c) symbol
 \RequirePackage{calc}  % Text length calculations
 \RequirePackage[authoryear]{natbib}  % Citations
+\RequirePackage[draft]{hyperref}  % For clever references
+%\RequirePackage{refstyle/cleveref}
 
 % General layout parameters for all pages:
 \renewcommand{\topfraction}{0.9}  % Max fraction of floats at top
@@ -39,6 +41,10 @@
 % Parameters for float pages (not text pages):
 \renewcommand{\floatpagefraction}{0.85}  % Require fuller float pages
 \renewcommand{\dblfloatpagefraction}{0.7}  % Require fuller float pages
+
+% For better cross-references
+\newcommand*{\tabref}[1]{\tablename~\ref{#1}}
+\newcommand*{\figref}[1]{\figurename~\ref{#1}}
 
 % Line numbers don't like equations: this is a fix
 \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
@@ -65,10 +71,8 @@
 \fancyhead{}  % No header
 \sloppy  % No text in margins (line length)
 \setlength\parindent{1em}  % Paragraph indent
-
-% Section and subsection formatting
-\sectionfont{\normalsize\centering\noindent}  % Section
-\subsectionfont{\normalsize\raggedright\noindent}  % Subsection
+\sectionfont{\normalsize\centering\noindent}  % Section formatting
+\subsectionfont{\normalsize\raggedright\noindent}  % Subsection formatting
 
 % Ensure auto-generated sections are uppercase
 \addto\captionsenglish{\renewcommand{\contentsname}{CONTENTS}}
