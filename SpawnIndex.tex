@@ -83,7 +83,7 @@ Third, the database is difficult to troubleshoot because most of its authors hav
 And finally, we consider it good practice to separate the data from the analysis.
 A beneficial side-effect of having the analysis as a separate script is that it allows us to generate dynamic reports in the spirit of reproducible research using \textbf{knitr} \citep{Xie2015}.
 
-Spawn surveys collect data used to calculate the spawn index.
+Spawn surveys collect data to calculate the spawn index.
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 Note that understory observations have two components: spawn on the bottom, and spawn on vegetation (i.e., algae).
 Surface spawn surveys have the coarsest spatial resolution and greatest spatial extent of the three survey types (Ref?).
@@ -108,9 +108,10 @@ Bed widths are used to calculate the spawn index for surface surveys.
 \label{figBC}
 \end{figure}
 
-This report is divided into sections; in each section we describe the spawn index calculations for one of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
+We have divided this report into sections.
+First, we quantify Pacific herring fecundity (\autoref{secFecund}), which is critical to calculating the spawn index.
+Then, we describe the spawn index calculations for each of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
 Within each section, each level of spatial aggregation (e.g., calculations at the quadrat, or transect level) is in a separate subsection.
-However, we first quantify Pacific herring fecundity (\autoref{secFecund}), which is critical to calculating the spawn index.
 Next, we combine the three spawn indices to get the total spawn index (\autoref{secTotal}).
 Finally, we describe how users can download and run the \textbf{R} script \texttt{Spawn.R} to calculate the spawn index for an example spawn survey data set (\autoref{secDown}).
 Note that we have avoided subscript notation in the following equations to make this report more accessible, and to correspond with the \textbf{R} script which does not use subscripts (e.g., no `for' loops or indexing).%
