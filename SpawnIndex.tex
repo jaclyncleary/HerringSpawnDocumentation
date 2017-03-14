@@ -57,7 +57,8 @@
 \input{Document/TechReportPage.tex}  % Tech report page
 \input{Document/InsideCoverPage.tex}  % Inside cover page (input required)
 \input{Document/ColophonPage.tex}  % Colophon page
-\tableofcontents \clearpage  % Table of contents page
+\pdfbookmark[1]{\contentsname}{toc}  % Add TOC to pdf bookmarks
+\tableofcontents\clearpage  % Table of contents page
 \listoffigures \listoftables \clearpage  % Lists of figures and tables (optional)
 \input{Document/AbstractPage.tex}  % Abstact and resume page (input required)
 
@@ -110,10 +111,11 @@ Bed widths are used to calculate the spawn index for surface surveys.
 
 We have divided this report into sections.
 First, we quantify Pacific herring fecundity (\autoref{secFecund}), which is critical to calculating the spawn index.
-Then, we describe the spawn index calculations for each of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
+Then, we describe the calculations for each of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
 Within each section, each level of spatial aggregation (e.g., calculations at the quadrat, or transect level) is in a separate subsection.
 Next, we combine the three spawn indices to get the total spawn index (\autoref{secTotal}).
-Finally, we describe how users can download and run the \textbf{R} script \texttt{Spawn.R} to calculate the spawn index for an example spawn survey data set (\autoref{secDown}).
+Finally, we describe how users can download and run the \textbf{R} script \texttt{Spawn.R} to calculate the spawn index (\autoref{secDown}).
+Users can also download an example spawn survey data set.
 Note that we have avoided subscript notation in the following equations to make this report more accessible, and to correspond with the \textbf{R} script which does not use subscripts (e.g., no `for' loops or indexing).%
 \footnote{We could add subscript notation if required.}
 
@@ -327,7 +329,7 @@ TotalSI = SurfSI + MacroSI + UnderSI
 \label{eqTotalSI}
 \end{equation}
 where $TotalSI$ is in tonnes.
-For stock assessment purposes, we aggregate the total spawn index by year and SAR, which is the temporal and spatial scale for Pacific herring science and management in BC \citeyearpar[CSAS][]{CSAS2015b}.
+Although we track the date and location (i.e., eastings, northings) for each spawn event, we aggregate the total spawn index by year and SAR to align with the temporal and spatial scale for Pacific herring science and management in BC \citeyearpar[CSAS][]{CSAS2015b}.
 As previously mentioned, the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
 
 \section{DOWNLOAD}\label{secDown}
