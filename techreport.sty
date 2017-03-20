@@ -24,6 +24,8 @@
 \RequirePackage{calc}  % Text length calculations
 \RequirePackage[authoryear]{natbib}  % Citations
 \RequirePackage[hidelinks]{hyperref}  % Better cross references
+\RequirePackage{letltxmacro}  % Enable/disable footnotes
+
 
 % General layout parameters for all pages:
 \renewcommand{\topfraction}{0.9}  % Max fraction of floats at top
@@ -89,3 +91,16 @@
   \rightskip\leftskip
   \parfillskip \z@skip}
 \makeatother
+
+% Footnote fun
+\LetLtxMacro\Oldfootnote\footnote
+
+% Enable footnotes
+\newcommand{\EnableFootNotes}{%
+  \LetLtxMacro\footnote\Oldfootnote%
+}
+
+% Disable footnotes (on the cover page)
+\newcommand{\DisableFootNotes}{%
+  \renewcommand{\footnote}[2][]{\relax}
+}
