@@ -290,7 +290,8 @@ EggsDBot = 340 \times BotLayers \times BotProp
 where $BotLayers$ is the number of egg layers on the bottom, $BotProp$ is the proportion of the bottom covered in spawn, and $EggsDBot$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 Vegetation egg density in thousands is \citep{Schweigert2005}
 \begin{multline}
-EggsDVeg = 600.567 \times VegLayers^{0.6355} \times VegProp^{1.413} \times V \times 1.0512
+EggsDVeg = 600.567 \times VegLayers^{0.6355} \times VegProp^{1.4130} \times V \times 1.0512
+% Theres actually another parameter here: Q=1.0512 for 0.5m^2 quadrats (and other values for different sizes, but none are used in the code.. why?)
 \label{eqEggDensUnderV}
 \end{multline}
 where $VegLayers$ is the number of egg layers on a given vegetation type, $VegProp$ is the proportion of the bottom covered by the vegetation, $V$ is the vegetation coefficient (\autoref{tabVegTypes}), and $EggsDVeg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
@@ -389,7 +390,7 @@ Keep in mind those we may want to thank:
 
 % References
 \bibliographystyle{Document/CJFAS}
-\addcontentsline{toc}{section}{\refname}\bibliography{C:/Grinnell/References/Grinnell}
+\addcontentsline{toc}{section}{\refname}\bibliography{Document/SpawnIndex}
 
 % The end
 \end{document}
