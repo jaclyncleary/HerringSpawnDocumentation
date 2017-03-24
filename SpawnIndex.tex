@@ -92,6 +92,7 @@ The spawn index calculations have been revised over the years; we restrict this 
 For example, there are two ways for \autoref{eqEggDensUnderV}.
 I suspect this isn't necessary, and would open up a lot of unnecessary/irrelevant history.}
 The spawn index is an important component of Pacific herring stock assessments in BC.
+MT: Maybe this statement can lead off the paragraph, along with some background on how the spawn assessment is used in the stock assessment.
 Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
 
 The motivation to document the spawn index calculations came when we translated the process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
@@ -106,10 +107,14 @@ Spawn surveys collect data used to calculate the spawn index.
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 Note that understory observations have two components: spawn on the bottom, and spawn on vegetation (i.e., algae).
 Surface spawn surveys have the coarsest spatial resolution and greatest spatial extent of the three survey types (Ref?).
+MT: (Schweigert, 1993...good description on the history of surface surveys and time length)
 Surface spawn surveys were the only survey type prior to 1988, and they are still used extensively for minor spawns because they are adequate for narrow spawns in shallow water (Ref?).
+MT: (Surface surveys play a role in early/late spawns, hard to reach areas {outside SAR's}, man-power availibility --- never heard of this reference to spawns in shallow waters)
 Macrocystis and understory spawn surveys are conducted using SCUBA gear.
 Underwater SCUBA surveys have been used for all major spawns since 1988, and are thought to be more accurate than surface spawn surveys (Ref?).
+MT: (Schweigert, 1993) "Snorkeling and scuba surveys indicated the existence of significant amounts of subtidal spawn which were overlooked using the traditional surface-based technique"  "Diving surveys of egg deposition provided improved estimates of stock abundance and routine monitoring surveys were expanded coastwide in 1988"
 Herring spawn surveys began in 1928, but are considered incomplete prior to 1937 because many potential areas were not surveyed (Ref?).
+MT: (Schweigert, 1993 - reference to early work by Hart & Tester)
 
 Herring spawn survey observations have a nested hierarchical structure: quadrats are nested within transects, transects are nested within spawns, and spawns are nested within locations.
 For stock assessment purposes, locations are nested within sections, sections are nested within statistical areas, and statistical areas are nested within five major and two minor stock assessment regions (SARs) in BC.
@@ -141,6 +146,7 @@ TODO:
 \begin{itemize}
 \item Describe the database calculations/pre-processing (if any?) that occurs when raw survey data are entered, which create the tables imported by \texttt{SpawnIndex.R} (e.g., \texttt{tSSAllspawn}, \texttt{tSSMacTrans}).
 \item Reproduce these in \textbf{R} to fully understand them, instead of relying on the database?
+MT: would have to look into this more...but i do not think there is any pre-calculations from the survey data entry program
 \end{itemize}
 
 \section{FECUNDITY}\label{secFecund}
@@ -157,6 +163,7 @@ Therefore, we divide $\text{eggs} \cdot 10^{3}$ by $1 \cdot 10^{5}$ to determine
 \section{SURFACE SPAWN}\label{secSurf}
 
 Surface spawn surveys collect data along transects, and we calculate spawn metrics at the transect, and spawn/bed level.
+MT: surface surveys can follow the pre-determined transects of a dive survey chart, or can make their own spawn area...we can discuss and clarify further.
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
@@ -237,12 +244,14 @@ We update the following records:
 Macrocystis spawn surveys collect data for individual plants, and we calculate spawn metrics at the transect, and spawn levels.
 Macrocystis spawn is only calculated for `mature' plants, which are defined as?%
 \footnote{What is a mature plant?
-Are immature plants covered in the `understory' spawn calculations?}
+Are immature plants covered in the `understory' spawn calculations?
+MT: Immature fronds are considered less than 1m high and normally have a gummy coating (immatures are recorded but not used for any calculations).  Stipes less than 10cm high and dead stipes are ignored by the divers.  Reference Herring Spawn Survey manual, Fort, Daniel, Thompson, 2017}
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
 Several metrics are collected at the transect level: transect length $LengthT$, transect width $WidthT$, and Macrocystis length $LengthMacroT$, all in metres, as well as transect area $AreaT$, in square metres.
 `Macrocystis length' is the distance that the Macrocystis extends perpendicular to the shore (?).
+MT: Wwhere are you looking at this??? Length should refer to beach length and width should be the perpendicular "length", same as understory.
 Note that we set $LengthMacroT$ to the transect length $Length$ if $LengthMacroT$ is inadvertently not recorded.
 In addition, we calculate metrics for mature Macrocystis plants: mean height $HeightMeanT$ in metres, mean egg layers $LayersMeanT$, total number of fronds $FrondsTotT$, and total number of plants $PlantsTotT$.
 
