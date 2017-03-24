@@ -17,7 +17,7 @@
 \newcommand{\trYear}{2017}
 \newcommand{\trReportNum}{XXXX}
 \newcommand{\trAuthFootA}{\footnote{E-mail: \texttt{Matthew.Grinnell@dfo-mpo.gc.ca} $|$ telephone: (250)~756.7055}}
-\newcommand{\trAuthsLong}{Matthew H.~Grinnell,\trAuthFootA{} and others...}  % JC, MT, ...
+\newcommand{\trAuthsLong}{Matthew H.~Grinnell,\trAuthFootA{} and others...}  % JC, MT, JS...
 \newcommand{\trAuthsBack}{Grinnell, M.\,H., et al...}
 
 % New definition: Address
@@ -84,16 +84,19 @@ Note that the `spawn index' is not scaled by the spawn survey scaling parameter,
 
 \section{INTRODUCTION}
 
-This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index for Pacific herring ($Clupea$ $pallasii$) in British Columbia (BC), Canada.
+The spawn index is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada \citeyearpar[CSAS][]{CSAS2015b}.
+Along with catch and biological data, the spawn index is used to fit an integrated statistical catch-at-age model.
+Key results from the stock assessment model include stock reconstructions, estimated current stock status, and projected spawning biomass in the upcoming year.
+Projected spawning biomass is used to set allowable harvest levels.
+Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
+
+This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index for Pacific herring in BC.
 The process and calculations described in this report have been documented elsewhere, in either published or informal, internal documents.
 Our goal is to collect and simplify the details necessary to understand the process for calculating the spawn index.
 The spawn index calculations have been revised over the years; we restrict this report to describing the current methods.%
 \footnote{Include (or mention) `old' ways of calculating egg density? 
 For example, there are two ways for \autoref{eqEggDensUnderV}.
-I suspect this isn't necessary, and would open up a lot of unnecessary/irrelevant history.}
-The spawn index is an important component of Pacific herring stock assessments in BC.
-MT: Maybe this statement can lead off the paragraph, along with some background on how the spawn assessment is used in the stock assessment.
-Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
+I suspect this isn't necessary, and would open up a lot of possibly unnecessary/irrelevant history.}
 
 The motivation to document the spawn index calculations came when we translated the process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
 We updated from a database to an \textbf{R} script for several reasons.
@@ -106,15 +109,12 @@ Finally, a separate \textbf{R} script will allow us to generate dynamic document
 Spawn surveys collect data used to calculate the spawn index.
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 Note that understory observations have two components: spawn on the bottom, and spawn on vegetation (i.e., algae).
-Surface spawn surveys have the coarsest spatial resolution and greatest spatial extent of the three survey types (Ref?).
-MT: (Schweigert, 1993...good description on the history of surface surveys and time length)
-Surface spawn surveys were the only survey type prior to 1988, and they are still used extensively for minor spawns because they are adequate for narrow spawns in shallow water (Ref?).
-MT: (Surface surveys play a role in early/late spawns, hard to reach areas {outside SAR's}, man-power availibility --- never heard of this reference to spawns in shallow waters)
+Surface spawn surveys were the only survey type prior to 1988, and are still used extensively for minor spawns, remote spawns (i.e., outside stock assessment regions; see below), and unusually early or late spawns \citep{Schweigert1993b}.
+Surface spawn surveys have the coarsest spatial resolution and greatest spatial extent of the three survey types.
 Macrocystis and understory spawn surveys are conducted using SCUBA gear.
-Underwater SCUBA surveys have been used for all major spawns since 1988, and are thought to be more accurate than surface spawn surveys (Ref?).
-MT: (Schweigert, 1993) "Snorkeling and scuba surveys indicated the existence of significant amounts of subtidal spawn which were overlooked using the traditional surface-based technique"  "Diving surveys of egg deposition provided improved estimates of stock abundance and routine monitoring surveys were expanded coastwide in 1988"
+Underwater SCUBA surveys have been used for all major spawns since 1988, and are thought to be more accurate than surface spawn surveys \citep{Schweigert1993b}.
 Herring spawn surveys began in 1928, but are considered incomplete prior to 1937 because many potential areas were not surveyed (Ref?).
-MT: (Schweigert, 1993 - reference to early work by Hart & Tester)
+MT: Schweigert, 1993 -- reference to early work by Hart and Tester)
 
 Herring spawn survey observations have a nested hierarchical structure: quadrats are nested within transects, transects are nested within spawns, and spawns are nested within locations.
 For stock assessment purposes, locations are nested within sections, sections are nested within statistical areas, and statistical areas are nested within five major and two minor stock assessment regions (SARs) in BC.
@@ -144,7 +144,7 @@ Note that we have avoided subscript notation in the following equations to corre
 
 TODO:
 \begin{itemize}
-\item Describe the database calculations/pre-processing (if any?) that occurs when raw survey data are entered, which create the tables imported by \texttt{SpawnIndex.R} (e.g., \texttt{tSSAllspawn}, \texttt{tSSMacTrans}).
+\item Describe the database calculations/pre-processing (if any?) that occurs in the \textbf{Microsoft Access} database when raw survey data are entered, which create the tables imported by \texttt{SpawnIndex.R} (e.g., \texttt{tSSAllspawn}, \texttt{tSSMacTrans}).
 \item Reproduce these in \textbf{R} to fully understand them, instead of relying on the database?
 MT: would have to look into this more...but i do not think there is any pre-calculations from the survey data entry program
 \end{itemize}
@@ -159,6 +159,7 @@ We assume that females account for 50\% of spawners, and we use the following fe
 \end{equation}
 Note that our unit of measurement for eggs is thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report.
 Therefore, we divide $\text{eggs} \cdot 10^{3}$ by $1 \cdot 10^{5}$ to determine spawning biomass in tonnes.
+Although Pacific herring fecundity is affected by environmental variability, we expect that bias to the spawner index from using \autoref{eqFecundityConv} is insignificant in most areas and years \citep{Schweigert1993b}.
 
 \section{SURFACE SPAWN}\label{secSurf}
 
@@ -187,8 +188,12 @@ where $EggDensT$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 \begin{table}
 \centering
 \caption[Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys]
-{Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys for the periods 1928--1950, and 1951--1978 (Ref?).
-Note that intensity was sometimes recorded after being officially discontinued in 1978.}
+{Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys for the periods 1928--1950, and 1951--1978 \citep{HumphreysHaegele1976, HayKronlund1987}.
+\textbf{These values aren't directly from \citet{HumphreysHaegele1976} or \citet{HayKronlund1987}; I'm not sure where they're from?
+Also, \citet{HayKronlund1987} says that the change from 5 to 9 categories happend in 1969, which seems to be incorrect based on intensity values in the database.}
+Starting in 1979, spawn surveyors estimated the number of egg layers, and they continued to record intensity until 1981 to provide overlap between the two methods.
+Note that intensity was sometimes recorded after being officially discontinued in 1981.
+}
 \begin{tabular}{ccr}
 \toprule
 \multicolumn{2}{c}{Intensity category} & \\
@@ -242,10 +247,8 @@ We update the following records:
 \section{MACROCYSTIS SPAWN}\label{secMacro}
 
 Macrocystis spawn surveys collect data for individual plants, and we calculate spawn metrics at the transect, and spawn levels.
-Macrocystis spawn is only calculated for `mature' plants, which are defined as?%
-\footnote{What is a mature plant?
-Are immature plants covered in the `understory' spawn calculations?
-MT: Immature fronds are considered less than 1m high and normally have a gummy coating (immatures are recorded but not used for any calculations).  Stipes less than 10cm high and dead stipes are ignored by the divers.  Reference Herring Spawn Survey manual, Fort, Daniel, Thompson, 2017}
+Macrocystis plants are categorized as either `mature' or `immature' based on height.
+Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
@@ -299,11 +302,10 @@ EggsDBot = 340 \times BotLayers \times BotProp
 where $BotLayers$ is the number of egg layers on the bottom, $BotProp$ is the proportion of the bottom covered in spawn, and $EggsDBot$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 Vegetation egg density in thousands is \citep{Schweigert2005}
 \begin{multline}
-EggsDVeg = 600.567 \times VegLayers^{0.6355} \times VegProp^{1.4130} \times V \times 1.0512
-% Theres actually another parameter here: Q=1.0512 for 0.5m^2 quadrats (and other values for different sizes, but none are used in the code.. why?)
+EggsDVeg = 600.567 \times VegLayers^{0.6355} \times VegProp^{1.4130} \times V \times Q
 \label{eqEggDensUnderV}
 \end{multline}
-where $VegLayers$ is the number of egg layers on a given vegetation type, $VegProp$ is the proportion of the bottom covered by the vegetation, $V$ is the vegetation coefficient (\autoref{tabVegTypes}), and $EggsDVeg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
+where $VegLayers$ is the number of egg layers on a given vegetation type, $VegProp$ is the proportion of the bottom covered by the vegetation, $V$ is the vegetation coefficient (\autoref{tabVegTypes}), $Q$ is the quadrat size coefficient (\autoref{tabQuadSize}), and $EggsDVeg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 %Note that \autoref{eqEggDensUnderV} replaces an earlier equation for vegetation egg density which is no longer in use:
 %\begin{multline}
 %EggsDVeg = 1033.6694 \times VegLayers^{0.7137} \times VegProp^{1.5076} \times V \times 0.502 \enspace .
@@ -340,6 +342,23 @@ Stringy algae & 1.0000 \\
 \end{tabular}
 \label{tabVegTypes}
 \end{table}
+
+\begin{table}
+\centering
+\caption[Quadrat sizes and coefficients for Pacific herring understory spawn surveys]
+{Quadrat sizes ($\text{m}^{2}$) and coefficients, $Q$ for Pacific herring understory spawn surveys \citep{Schweigert2005}.}
+\begin{tabular}{rr}
+\toprule
+Quadrat size ($\text{m}^{2}$) & Coefficient, $Q$\\
+\midrule
+1.00 & 0.4271 \\
+0.50 & 1.0512 \\
+0.25 & 1.0000 \\
+\bottomrule
+\end{tabular}
+\label{tabQuadSize}
+\end{table}
+
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 

@@ -110,6 +110,15 @@
   groups    = {SpawnIndex},
 }
 
+@Report{FortEtal2017,
+  author      = {C. Fort and K. Daniel and M. Thompson},
+  title       = {Herring spawn survey manual},
+  institution = {Fisheries and Oceans Canada},
+  year        = {2017},
+  file        = {:Articles\\FortEtal2017 - Herring spawn survey manual.pdf:PDF},
+  groups      = {SpawnIndex},
+}
+
 @Article{HayKronlund1987,
   author   = {D. E. Hay and A. R. Kronlund},
   title    = {Factors affecting the distribution, abundance, and measurement of {Pacific} herring (\emph{{Clupea} harengus pallasi}) spawn},
@@ -121,17 +130,6 @@
   abstract = {Records of the date, location, and magnitude of Pacific herring (Clupea harengus pallasi) spawnings in British Columbia, collected since 1928, were compiled and analysed. In the early years of spawn surveys, adjacent spawnings were often reported as single events. Gradually, this practice has changed so that each spawning has a separate record. As a consequence of this change in methods, the mean length of spawnings has decreased in recent years but the total numbers of records has increased. Estimates of mean spawning width and intensity have also changed, partly due to changing survey methods as well as changing spawning distributions. A spawn abundance index is developed to account for these temporal changes. Abiotic factors affecting the distribution and abundance of spawn deposition include sea surface temperatures and the fishery. Biological factors affecting spawn distribution and abundance are not as well defined, but it is shown that in some situations, spawn dimensions may change as a function of stock abundance.},
   file     = {:Articles\\HayKronlund1987 - Factors affecting the distribution, abundance, and measurement....pdf:PDF},
   groups   = {SpawnIndex, Herring},
-}
-
-@TechReport{HumphreysHaegele1976,
-  author      = {R. D. Humphreys and C. W. Haegele},
-  title       = {An evaluation of herring spawn survey techniques used in {British} {Columbia} waters},
-  institution = {Environment Canada, Fisheries and Marine Service},
-  year        = {1976},
-  type        = {Technical Report},
-  number      = {613},
-  file        = {:Articles\\HumphreysHaegele1979 - Evaluation of herring spawn techniques...pdf:PDF},
-  groups      = {Herring, SpawnIndex},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
