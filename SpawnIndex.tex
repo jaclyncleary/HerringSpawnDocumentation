@@ -1,7 +1,8 @@
 %%%%% TODO %%%%%
 
-% 5. Make an inset in Figure 1 showing the NE Pacific Ocean (PNW)
+% 5. Make an inset in Figure 1 showing the NE Pacific Ocean (PNW)?
 % 6. Sort out Length and Width metrics here, and in the code
+% 7. If we add JS as an author, remove Personal Communications and Acknowledgements
 
 %%%%% Preamble %%%%%
 
@@ -31,12 +32,13 @@
 
 % Abstract
 \newcommand{\trAbstract}{
-This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index for Pacific herring ($Clupea$ $pallasii$) in British Columbia (BC), Canada.
+The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada.
+This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index.
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
-First, we calculate the spawn index for each of these three survey types separately.
-Then, we combine the three indices to determine the total spawn index.
-Finally, we aggregate the total spawn index by year and stock assessment region, which is the temporal and spatial scale for Pacific herring science advice and fishery management in BC.
-For example, the spawn index is one component of Pacific herring stock assessments in BC.
+There are several steps to calculating the spawn index.
+First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index.
+Then, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory.
+Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale for Pacific herring science advice and fishery management in BC.
 Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ and therefore is not an estimate of spawning stock biomass.}
 
 % Resume (i.e., French abstract)
@@ -84,8 +86,8 @@ Note that the `spawn index' is not scaled by the spawn survey scaling parameter,
 
 \section{INTRODUCTION}
 
-The spawn index is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada \citeyearpar[CSAS][]{CSAS2015b}.
-Along with catch and biological data, the spawn index is used to fit an integrated statistical catch-at-age model.
+The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada \citeyearpar[CSAS][]{CSAS2015b}.
+Along with catch and biological time series, the spawn index is used to fit an integrated statistical catch-at-age model.
 Key results from the stock assessment model include stock reconstructions, estimated current stock status, and projected spawning biomass in the upcoming year.
 Projected spawning biomass is used to set allowable harvest levels.
 Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
@@ -109,12 +111,10 @@ Finally, a separate \textbf{R} script will allow us to generate dynamic document
 Spawn surveys collect data used to calculate the spawn index.
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 Note that understory observations have two components: spawn on the bottom, and spawn on vegetation (i.e., algae).
-Surface spawn surveys were the only survey type prior to 1988, and are still used extensively for minor spawns, remote spawns (i.e., outside stock assessment regions; see below), and unusually early or late spawns \citep{Schweigert1993b}.
-Surface spawn surveys have the coarsest spatial resolution and greatest spatial extent of the three survey types.
-Macrocystis and understory spawn surveys are conducted using SCUBA gear.
-Underwater SCUBA surveys have been used for all major spawns since 1988, and are thought to be more accurate than surface spawn surveys \citep{Schweigert1993b}.
+Surface spawn surveys are the least accurate of the three survey types, but they have the greatest temporal and spatial extent \citep{Schweigert1993b}.
+For example, surface spawn surveys were the only survey type prior to 1988, and they are still used extensively for minor spawns, remote spawns (i.e., outside stock assessment regions; see below), and unusually early or late spawns.
+Macrocystis and understory spawn surveys are conducted using SCUBA gear; underwater SCUBA surveys have been used for all major spawns since 1988.
 Herring spawn surveys began in 1928, but are considered incomplete prior to 1937 because many potential areas were not surveyed (Ref?).
-MT: Schweigert, 1993 -- reference to early work by Hart and Tester)
 
 Herring spawn survey observations have a nested hierarchical structure: quadrats are nested within transects, transects are nested within spawns, and spawns are nested within locations.
 For stock assessment purposes, locations are nested within sections, sections are nested within statistical areas, and statistical areas are nested within five major and two minor stock assessment regions (SARs) in BC.
@@ -133,10 +133,11 @@ Bed widths are used to calculate the spawn index for surface surveys.
 We have divided this report into sections.
 First, we describe the data pre-processing that occurs when raw survey observations are imported into the database (\autoref{secData}).
 Then, we quantify Pacific herring fecundity (\autoref{secFecund}), which is critical to calculating the spawn index.
-Then, we describe the calculations for each of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
+Next, we describe the calculations for each of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
 Within each section, each level of spatial aggregation (e.g., calculations at the quadrat, or transect level) is in a separate subsection.
-Next, we combine the three spawn indices to get the total spawn index (\autoref{secTotal}).
-Finally, we describe how users can download and run the \textbf{R} script to calculate the spawn index (\autoref{secDown}).
+Then, we combine the three spawn indices to get the total spawn index (\autoref{secTotal}).
+Next, we describe how users can download and run the \textbf{R} script to calculate the spawn index (\autoref{secDown}).
+Finally, we suggest some analyses to help quantify the assumptions and uncertainties in spawn index calculations (\autoref{secWork}).
 Note that we have avoided subscript notation in the following equations to correspond with the \textbf{R} script which does not use subscripts (e.g., no `for' loops or indexing).%make this report more accessible, and to
 \footnote{We could add subscript notation if required.}
 
@@ -146,25 +147,30 @@ TODO:
 \begin{itemize}
 \item Describe the database calculations/pre-processing (if any?) that occurs in the \textbf{Microsoft Access} database when raw survey data are entered, which create the tables imported by \texttt{SpawnIndex.R} (e.g., \texttt{tSSAllspawn}, \texttt{tSSMacTrans}).
 \item Reproduce these in \textbf{R} to fully understand them, instead of relying on the database?
-MT: would have to look into this more...but i do not think there is any pre-calculations from the survey data entry program
+\item (MT) Would have to look into this more... but I do not think there are any pre-calculations from the survey data entry program.
 \end{itemize}
 
 \section{FECUNDITY}\label{secFecund}
 
-Female Pacific herring produce an average of 200 eggs per gram, g of total body weight \citep{Hay1985}.
+Female Pacific herring produce an average of approximately 200 eggs per gram, g of total body weight \citep{Hay1985, HayBrett1988}.
 We assume that females account for 50\% of spawners, and we use the following fecundity conversion factor for eggs to tonnes, t of spawners
 \begin{equation}
 \frac {1 \cdot 10^{8}~\text{eggs}} {\text{t}} = \frac{200~\text{eggs}} {\text{g}} \times 0.5 \times \frac{1 \cdot 10^{6}~\text{g}} {\text{t}} \enspace .
 \label{eqFecundityConv}
 \end{equation}
 Note that our unit of measurement for eggs is thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report.
-Therefore, we divide $\text{eggs} \cdot 10^{3}$ by $1 \cdot 10^{5}$ to determine spawning biomass in tonnes.
-Although Pacific herring fecundity is affected by environmental variability, we expect that bias to the spawner index from using \autoref{eqFecundityConv} is insignificant in most areas and years \citep{Schweigert1993b}.
+Therefore, we divide $\text{eggs} \cdot 10^{3}$ by $1 \cdot 10^{5}$ to calculate an index of spawning biomass (i.e., the spawn index) in tonnes.
+Although Pacific herring fecundity is affected by environmental variability and other factors, we expect that bias to the spawn index from using \autoref{eqFecundityConv} is insignificant in most areas and years \citep{Schweigert1993b}.
 
 \section{SURFACE SPAWN}\label{secSurf}
 
 Surface spawn surveys collect data along transects, and we calculate spawn metrics at the transect, and spawn/bed level.
-MT: surface surveys can follow the pre-determined transects of a dive survey chart, or can make their own spawn area...we can discuss and clarify further.
+\begin{itemize}
+\item Brief description of surface spawn surveys.%
+\footnote{I think we should provide a brief/general description for each survey type because I'm not sure how to reference the `Herring spawn survey manual.'}
+\item Generally, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
+\item (MT) Surface surveys can follow the pre-determined transects of a dive survey chart, or can make their own spawn area... we can discuss and clarify further.
+\end{itemize}
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
@@ -190,7 +196,7 @@ where $EggDensT$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 \caption[Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys]
 {Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys for the periods 1928--1950, and 1951--1978 \citep{HumphreysHaegele1976, HayKronlund1987}.
 \textbf{These values aren't directly from \citet{HumphreysHaegele1976} or \citet{HayKronlund1987}; I'm not sure where they're from?
-Also, \citet{HayKronlund1987} says that the change from 5 to 9 categories happend in 1969, which seems to be incorrect based on intensity values in the database.}
+Also, \citet{HayKronlund1987} says that the change from 5 to 9 categories happened in 1969, which seems to be incorrect based on intensity values in the database.}
 Starting in 1979, spawn surveyors estimated the number of egg layers, and they continued to record intensity until 1981 to provide overlap between the two methods.
 Note that intensity was sometimes recorded after being officially discontinued in 1981.
 }
@@ -201,13 +207,13 @@ Note that intensity was sometimes recorded after being officially discontinued i
 \midrule
 0 & 0 & 0.0000 \\
 1 & 1 & 0.5529 \\
- & 2 & 0.9444 \\
+  & 2 & 0.9444 \\
 2 & 3 & 1.3360 \\
- & 4 & 2.1496 \\
+  & 4 & 2.1496 \\
 3 & 5 & 2.9633 \\
- & 6 & 4.1318 \\
+  & 6 & 4.1318 \\
 4 & 7 & 5.3002 \\
- & 8 & 6.5647 \\
+  & 8 & 6.5647 \\
 5 & 9 & 7.8291 \\
 \bottomrule
 \end{tabular}
@@ -247,15 +253,19 @@ We update the following records:
 \section{MACROCYSTIS SPAWN}\label{secMacro}
 
 Macrocystis spawn surveys collect data for individual plants, and we calculate spawn metrics at the transect, and spawn levels.
-Macrocystis plants are categorized as either `mature' or `immature' based on height.
+Macrocystis plants are categorized as either `mature' or `immature' based on stipe height.
 Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
+\begin{itemize}
+\item Brief description of Macrocystis spawn surveys.
+\item Transect width is $2\,\text{m}$.
+\item Generally, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
+\item Thus, `Macrocystis length' is the distance that Macrocystis extends parallel to the shore?
+\end{itemize}
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
 Several metrics are collected at the transect level: transect length $LengthT$, transect width $WidthT$, and Macrocystis length $LengthMacroT$, all in metres, as well as transect area $AreaT$, in square metres.
-`Macrocystis length' is the distance that the Macrocystis extends perpendicular to the shore (?).
-MT: Wwhere are you looking at this??? Length should refer to beach length and width should be the perpendicular "length", same as understory.
-Note that we set $LengthMacroT$ to the transect length $Length$ if $LengthMacroT$ is inadvertently not recorded.
+If $LengthMacroT$ is inadvertently not recorded, we set $LengthMacroT$ to the transect length $Length$.
 In addition, we calculate metrics for mature Macrocystis plants: mean height $HeightMeanT$ in metres, mean egg layers $LayersMeanT$, total number of fronds $FrondsTotT$, and total number of plants $PlantsTotT$.
 
 \subsection{SPAWN LEVEL CALCULATIONS}
@@ -264,7 +274,7 @@ At the spawn level, the mean of $LengthMacroT$ is $LengthMacroMeanS$, the mean o
 In addition, the sum of $PlantsTotT$ is $PlantsTotS$, the sum of $FrondsTotT$ is $FrontsTotS$, the mean of $HeightMeanT$ is $HeightMeanS$, and the mean of $LayersMeanT$ is $LayersMeanS$. 
 The number of fronds per plant is
 \begin{equation}
-FrondsPerPlantS = \frac{FrondsTotS} {PlantsTotS} \, .
+FrondsPerPlantS = \frac{FrondsTotS} {PlantsTotS} \enspace .
 \label{eqFrondsPerPlant}
 \end{equation}
 The number of eggs per plant in thousands is \citep{HaegeleSchweigert1990}
@@ -291,6 +301,12 @@ where $MacroSI$ is in tonnes, based on the fecundity conversion factor (\autoref
 
 Understory spawn surveys collect data in quadrats, and we calculate spawn metrics at the quadrat, transect, and spawn levels.
 We calculate two separate estimates of egg density at the quadrat level: spawn on the bottom, and spawn on vegetation (i.e., algae).
+\begin{itemize}
+\item Brief description of Understory spawn surveys.
+\item Quadrat size is usually $0.5\,\text{m}^{2}$; what is spacing between quadrats?
+\item Generally, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
+\item Thus, `vegetation length' is the distance that vegetation extends parallel to the shore?
+\end{itemize}
 
 \subsection{QUADRAT LEVEL CALCULATIONS}
 
@@ -306,7 +322,7 @@ EggsDVeg = 600.567 \times VegLayers^{0.6355} \times VegProp^{1.4130} \times V \t
 \label{eqEggDensUnderV}
 \end{multline}
 where $VegLayers$ is the number of egg layers on a given vegetation type, $VegProp$ is the proportion of the bottom covered by the vegetation, $V$ is the vegetation coefficient (\autoref{tabVegTypes}), $Q$ is the quadrat size coefficient (\autoref{tabQuadSize}), and $EggsDVeg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
-%Note that \autoref{eqEggDensUnderV} replaces an earlier equation for vegetation egg density which is no longer in use:
+%Note that \autoref{eqEggDensUnderV} replaces an earlier equation (there were a few 'earlier' equations..) for vegetation egg density which is no longer in use:
 %\begin{multline}
 %EggsDVeg = 1033.6694 \times VegLayers^{0.7137} \times VegProp^{1.5076} \times V \times 0.502 \enspace .
 %\label{eqOldEggDensUnderV}
@@ -330,14 +346,14 @@ Note that we expand $Width$ in certain years to account for footrope expansion w
 \toprule
 Vegetation type & Coefficient, $V$\\
 \midrule
-Grasses & 0.9715 \\
-Grunge & 1.0000 \\
-Kelp, flat & 0.9119 \\
+Grasses        & 0.9715 \\
+Grunge         & 1.0000 \\
+Kelp, flat     & 0.9119 \\
 Kelp, standing & 1.1766 \\
-Leafy algae & 0.6553 \\
-Rockweed & 0.7793 \\
-Sargassum & 1.1766 \\
-Stringy algae & 1.0000 \\
+Leafy algae    & 0.6553 \\
+Rockweed       & 0.7793 \\
+Sargassum      & 1.1766 \\
+Stringy algae  & 1.0000 \\
 \bottomrule
 \end{tabular}
 \label{tabVegTypes}
@@ -366,9 +382,8 @@ At the transect level, the mean $EggDensWtQ$ is $EggDensWtMeanT$.
 
 \subsection{SPAWN LEVEL CALCULATIONS}
 
-At the spawn level, the sum of transect widths $Width$ is $WidthTotS$, the mean of $Width$ is $WidthMeanS$, and the vegetation length is $VegLengthS$, all in metres.
-`Vegetation length' is the distance that the vegetation extends perpendicular to the shore (?).
-Note that we set $VegLength$ to the transect length $Length$ if $VegLength$ is inadvertently not recorded.
+At the spawn level, the sum of transect widths $Width$ is $WidthTotS$, the mean of $Width$ is $WidthMeanS$, and the vegetation length is $LengthVegS$, all in metres.
+If $LengthVeg$ is inadvertently not recorded, we set $LengthVeg$ to the transect length $Length$.
 The sum of $EggDensWtMeanT$ is $EggDensWtTotS$.
 Understory egg density is 
 \begin{equation}
@@ -378,7 +393,7 @@ EggDensWtS = \frac{EggDensWtTotS} {WidthTotS}
 where $EggDensWtS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The understory spawn index is
 \begin{equation}
-UnderSI = \frac{EggDensWtS \times VegLengthS \times WidthMeanS} {1 \cdot 10^{5}}
+UnderSI = \frac{EggDensWtS \times LengthVegS \times WidthMeanS} {1 \cdot 10^{5}}
 \label{eqBiomassUnder}
 \end{equation}
 where $UnderSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundityConv}).
@@ -407,6 +422,25 @@ Sections in this report correspond somewhat to functions in the \textbf{R} scrip
 For example, \autoref{secSurf}, `Surface spawn' follows the \textbf{R} function \texttt{CalcSurfaceSpawn}.
 In addition, variable names in this report correspond to variable names in the script; 
 Finally, we have commented each line in the \textbf{R} script to promote accessibility and transparency.
+
+\section{FUTURE WORK}\label{secWork}
+The spawn index calculations rely on assumptions such as Pacific herring fecundity and the sex ratio of spawning herring.
+In addition, calculations ignore uncertainty in input data such as the number of egg layers, or prediction models (e.g., \autoref{eqEggDensSurf}).
+Investigating these sources of uncertainty could improve our trust in the spawn index, identify weaknesses to target for further analysis, or identify strategies to reduce spawn survey costs.
+Suggestions for future work include:
+\begin{itemize}
+\item Test fecundity assumptions by collecting biological samples to estimate egg production rates and sex ratios. For example, the observed non-stationarity of biological processes (e.g., weight-at-age) could affect egg production rates;
+\item Spawn index sensitivity analysis (either global by specifying a distibution to each variable, or one variable at a time by increasing/decreasing by a certain proportion);
+\item Investigate trade-off between spawn index precision versus survey cost/effort, as well as trade-off between high spawn index precision in some areas versus low or no information in other areas:
+\begin{itemize}
+\item Transect interval and width, as well as quadrat interval and size;
+\item Underwater surveys for major spawns in core areas, and surface surveys for all other areas;
+\item Periodic versus annual surveys;
+\end{itemize}
+\item Quantify uncertainty due to variability in estimated prediction model parameters (e.g., \autoref{eqEggDensSurf}); and
+\item Bootstrap quadrats within transects, and transects within spawns \citep[see][]{Schweigert1993b}.
+\end{itemize}
+Finally, quantifying and reporting these sources of uncertainty will make the spawn index more transparent, and enable us to assess potential impacts on Pacific herring stock assessments.
 
 \section{ACKNOWLEDGEMENTS}
 

@@ -1,6 +1,6 @@
 # Documentation for the Pacific herring spawn index in BC
 
-The spawn index is one component of Pacific herring (*Clupea pallasii*) stock assessments in British Columbia (BC), Canada.
+The spawn index time series is one component of Pacific herring (*Clupea pallasii*) stock assessments in British Columbia (BC), Canada.
 This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index.
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 There are several steps to calculating the spawn index.
