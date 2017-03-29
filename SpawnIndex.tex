@@ -96,10 +96,10 @@ Note that the `spawn index' is not scaled by the spawn survey scaling parameter,
 This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index for Pacific herring in BC.
 The process and calculations described in this report have been documented elsewhere, in either published or informal, internal documents.
 Our goal is to collect and simplify the details necessary to understand the process for calculating the spawn index.
-The spawn index calculations have been updated over the years as more data become available; we restrict this report to describing the current methods.%
+Spawn index calculations have been updated over the years as more data become available, and analyses suggest improvements; we restrict this report to describing the current methods.%
 \footnote{Include (or mention) `old' ways of calculating egg density? 
-For example, there are two ways for \autoref{eqEggDensUnderV}.
-I suspect this isn't necessary, and would open up a lot of possibly unnecessary/irrelevant history.. there are a lot of `old' ways to calculate the spawn index.}
+For example, there are (at least) two ways for \autoref{eqEggDensUnderV}.
+I suspect this isn't necessary/relevant, and would open up a lot of discussion: there are a lot of `old' ways to calculate the spawn index...}
 
 The motivation to document the spawn index calculations came when we translated the process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
 We updated from a database to an \textbf{R} script for several reasons.
@@ -409,20 +409,22 @@ TotalSI = SurfSI + MacroSI + UnderSI
 where $TotalSI$ is in tonnes.
 Although we track the date and location (i.e., eastings, northings) for each spawn event, we aggregate the total spawn index by year and SAR to align with the temporal and spatial scale for Pacific herring science advice and fishery management in BC \citeyearpar[CSAS][]{CSAS2015b}.
 As previously mentioned, the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
-%Furthermore, Pacific herring spawn indices are derived values (i.e., from calculations, which rely on assumptions), as opposed to observed data.
 
 \section{SOURCES OF UNCERTAINTY}\label{secUncertain}
 
-Like all ecosystem models, spawn index calculations may be affected by various potential sources of uncertainty including natural variability, observation error (e.g., bias, imprecision), and model structural complexity \citep{LinkEtal2012}.
-For example, natural variability may affect estimated Pacific herring fecundity, and the sex ratio of spawning herring (\autoref{eqFecundityConv}).
-In addition, observation error may affect input data such as the number of egg layers, and model strutural complexity may affect estimated prediction model parameters (e.g., \autoref{eqEggDensSurf}).
-However, uncertainty in the spawn index has typically been omitted, which may create the wrong impression that the spawn index is observed data as opposed to derived data.
+Like all ecosystem models, spawn index calculations are affected by various potential sources of uncertainty including natural variability, observation error (e.g., bias, imprecision), and model structural complexity \citep{LinkEtal2012}.
+Two examples illustrate these sources of uncertainty.
+First, natural variability may affect estimated Pacific herring fecundity, and the sex ratio of spawning herring (\autoref{eqFecundityConv}).
+For example, fecundity could be influenced by time-varying biological processes such as the observed non-stationarity of weight-at-age, or a truncated age distribution.
+Second, observation error may affect input data such as the number of egg layers, and model strutural complexity may affect estimated prediction model parameters (e.g., \autoref{eqEggDensSurf}).
+Despite these assumptions and sources of uncertainty, the spawn index has typically been repoted without quantifying uncertainty.
+Reporting the spawn index without uncertainty may create the wrong impression that the spawn index is observed data, whereas it is derived data with assumptions and uncertainties.
 
-Investigating and quantifying uncertainty could improve our trust in the spawn index, and identify weaknesses to target for further analysis.
-In addition, acknowledging uncertainty will reduce another source of uncertainty, inadequate communication among scientists, managers, and stakeholders, which can lead to misapplication of scientific advice \citep{LinkEtal2012}.
+Investigating and quantifying uncertainty may increase trust in the spawn index, and identify weaknesses to target with future analyses.
+In addition, acknowledging uncertainty in the calculations will reduce another source of uncertainty, inadequate communication among scientists, managers, and stakeholders, which can lead to misapplication of scientific advice \citep{LinkEtal2012}.
 Analyses to quantify spawn index uncertainty include:
 \begin{enumerate}
-\item Collect biological samples to quantify egg production rates and sex ratios, which may be influenced by time-varying biological processes such as the observed non-stationarity of weight-at-age;
+\item Quantify egg production rates and sex ratios, and investigate factors that influence fecundity;
 \item Quantify uncertainty due to variability in estimated prediction model parameters (e.g., \autoref{eqEggDensSurf});
 \item Quantify uncertainty in observed input data by bootstraping, for example, quadrats within transects, and transects within spawns \citep[see][]{Schweigert1993b}; and
 \item Conduct a spawn index sensitivity analysis (either global by specifying a distibution to each variable, or one variable at a time by increasing/decreasing by a certain proportion).
@@ -430,13 +432,14 @@ Analyses to quantify spawn index uncertainty include:
 
 Quantifying uncertainty may also identify options to reduce spawn survey costs. 
 Two reasons to investigate these options are: there is a trade-off between spawn index precision versus survey cost; and there is a trade-off between high precision in some areas versus low or no information in other areas.
+Investigating these trade-offs is critical to acquiring sufficient spawn data, and understanding precision loss, if spawn survey effort is reduced in the future.
 Strategies to reduce spawn survey costs include:
 \begin{enumerate}
 \item Conduct underwater surveys for major spawns in core areas, and surface surveys for all other areas;
 \item Quantify survey precision with respect to transect interval and width, as well as quadrat interval and size \citep[see][]{Schweigert1993b}; and
 \item Conduct periodic versus annual surveys.
 \end{enumerate}
-Quantifying and reporting spawn index uncertainty will increase transparency, and enable users to assess potential impacts to, for example, Pacific herring stock assessments in a management strategy evaluation process.
+Quantifying and reporting spawn index uncertainty will increase transparency, and enable users to assess potential impacts to, for example, Pacific herring stock assessments in a management strategy evaluation approach.
 
 \section{DOWNLOAD}\label{secDown}
 
