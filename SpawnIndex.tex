@@ -1,7 +1,6 @@
 %%%%% TODO %%%%%
 
 % 5. Make an inset in Figure 1 showing the NE Pacific Ocean (PNW)?
-% 6. Sort out Length and Width metrics here, and in the code
 % 7. If we add JS as an author, remove Personal Communications and Acknowledgements
 
 %%%%% Preamble %%%%%
@@ -96,12 +95,12 @@ Note that the `spawn index' is not scaled by the spawn survey scaling parameter,
 This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index for Pacific herring in BC.
 The process and calculations described in this report have been documented elsewhere, in either published or informal, internal documents.
 Our goal is to collect and simplify the details necessary to understand the process for calculating the spawn index.
-Spawn index calculations have been updated over the years as more data become available, and analyses suggest improvements; we restrict this report to describing the current methods.%
+Spawn index calculations have been updated over the years as more data and analyses justify improvements; we restrict this report to describing the current methods.%
 \footnote{Include (or mention) `old' ways of calculating egg density? 
 For example, there are (at least) two ways for \autoref{eqEggDensUnderV}.
 I suspect this isn't necessary/relevant, and would open up a lot of discussion: there are a lot of `old' ways to calculate the spawn index...}
 
-The motivation to document the spawn index calculations came when we translated the process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
+The motivation to document the spawn index calculations occurred when we translated the process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
 We updated from a database to an \textbf{R} script for several reasons.
 First, the database has been used for various purposes over several decades, and has incidental calculations that make it overly complex.
 Second, the database is difficult to troubleshoot, and to differentiate between input (i.e., data) and derived values.
@@ -169,7 +168,7 @@ Surface spawn surveys collect data along transects, and we calculate spawn metri
 \begin{itemize}
 \item Brief description of surface spawn surveys.%
 \footnote{I think we should provide a brief/general description for each survey type because I'm not sure how to reference the `Herring spawn survey manual.' Maybe the full details, including for example, the rational for transect and quadrat size and interval, should be in a separate Technical Report so that we can reference it?}
-\item Generally, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
+\item For surface spawn, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
 \item (MT) Surface surveys can follow the pre-determined transects of a dive survey chart, or can make their own spawn area... we can discuss and clarify further.
 \end{itemize}
 
@@ -196,8 +195,8 @@ where $EggDensT$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 \centering
 \caption[Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys]
 {Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys for the periods 1928--1950, and 1951--1978 \citep{HumphreysHaegele1976, HayKronlund1987}.
-\textbf{These values aren't directly from \citet{HumphreysHaegele1976} or \citet{HayKronlund1987}; I'm not sure where they're from?
-Also, \citet{HayKronlund1987} says that the change from 5 to 9 categories happened in 1969, which seems to be incorrect based on intensity values in the database.}
+\textbf{These values aren't directly from \citet{HumphreysHaegele1976} or \citet{HayKronlund1987}. Any idea where they're from?
+Also, \citet{HayKronlund1987} says that the change from 5 to 9 categories happened in 1969, which seems to be incorrect based on intensity values in the database, unless the database was retroactively updated at some point?}
 Starting in 1979, spawn surveyors estimated the number of egg layers, and they continued to record intensity until 1981 to provide overlap between the two methods.
 Note that intensity was sometimes recorded after being officially discontinued in 1981.
 }
@@ -258,9 +257,9 @@ Macrocystis plants are categorized as either `mature' or `immature' based on sti
 Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
 \begin{itemize}
 \item Brief description of Macrocystis spawn surveys.
-\item Transect width is $2\,\text{m}$.
-\item Generally, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
-\item Thus, `Macrocystis length' is the distance that Macrocystis extends parallel to the shore?
+\item For Macrocystis spawn, `length' generally refers to distances parallel to the shore, and `width' generally refers to distances perpendicular to the shore.
+\item The only exception is transect width, $WidthT = 2\,\text{m}$, which refers to the distance parallel to the shore.
+\item Thus, `Macrocystis length' is the distance that Macrocystis extends parallel to the shore.
 \end{itemize}
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
@@ -304,9 +303,10 @@ Understory spawn surveys collect data in quadrats, and we calculate spawn metric
 We calculate two separate estimates of egg density at the quadrat level: spawn on the bottom, and spawn on vegetation (i.e., algae).
 \begin{itemize}
 \item Brief description of Understory spawn surveys.
-\item Quadrat size is usually $0.5\,\text{m}^{2}$; what is spacing between quadrats?
-\item Generally, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
-\item Thus, `vegetation length' is the distance that vegetation extends parallel to the shore?
+\item Quadrat size for understory spawn surveys is usually $0.5\,\text{m}^{2}$; what is spacing between quadrats?
+\item Other quadrat sizes have been used for research in the past, but not for spawn surveys.
+\item For understory spawn, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
+\item Thus, `vegetation length' is the distance that vegetation extends parallel to the shore.
 \end{itemize}
 
 \subsection{QUADRAT LEVEL CALCULATIONS}
@@ -329,15 +329,15 @@ where $VegLayers$ is the number of egg layers on a given vegetation type, $VegPr
 %\label{eqOldEggDensUnderV}
 %\end{multline}
 The total linear weighted understory egg density in thousands is%
-\footnote{Explain why we calculate weighted egg density, $EggDensWtQ$.
-Is it because transects are different lengths (which we call widths)?}
+\footnote{Explain why we calculate weighted linear egg density, $EggDensWtQ$.
+Is it weighted because transects are different lengths (which we call widths, to be consistent with spawn level dimensions)?}
 \begin{equation}
 EggDensWtQ = \left( EggsDBot + EggsDVeg \right) \times Width
 \label{eqEggDensWtUnder}
 \end{equation}
-where $Width$ is the transect width in metres, and $EggDensWtQ$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-1}$.
+where $Width$ is the transect length (i.e., the spawn width) in metres, and $EggDensWtQ$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-1}$.
 Note that we expand $Width$ in certain years to account for footrope expansion when wet, when applicable.%
-\footnote{We don't do this, so can we remove if from here, and the \textbf{R} script?}
+\footnote{We don't do this, so can we remove if from here, and the \textbf{R} script? Maybe it was updated in the database?}
 
 \begin{table}
 \centering
@@ -375,7 +375,6 @@ Quadrat size ($\text{m}^{2}$) & Coefficient, $Q$\\
 \end{tabular}
 \label{tabQuadSize}
 \end{table}
-
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
