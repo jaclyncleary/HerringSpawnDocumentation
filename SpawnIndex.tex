@@ -34,7 +34,7 @@
 The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada.
 This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index.
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
-There are several steps to calculating the spawn index.
+There are several major steps to calculating the spawn index.
 First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index.
 Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory.
 Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale for Pacific herring science advice and fishery management in BC.
@@ -147,8 +147,45 @@ TODO:
 \begin{itemize}
 \item Describe the database calculations/pre-processing (if any?) that occurs in the \textbf{Microsoft Access} database when raw survey data are entered, which create the tables imported by \texttt{SpawnIndex.R} (e.g., \texttt{tSSAllspawn}, \texttt{tSSMacTrans}).
 \item Reproduce these in \textbf{R} to fully understand them, instead of relying on the database?
-\item (MT) Would have to look into this more... but I do not think there are any pre-calculations from the survey data entry program.
+\item (MT) Would have to look into this more, but I do not think there are any pre-calculations from the survey data entry program.
 \end{itemize}
+
+\section{SAMPLING PROTOCOL}\label{secSamp}
+
+Generally, Pacific herring spawn on [hard?] substrate and algae from the intertidal to subtidal.
+From above, herring spawns are typically bands running parallel to the shore.
+Each distinct spatial or temporal spawn has a unique `spawn number.'
+The spawn number is the finest scale that we calculate the spawn index.
+
+The first task is to map out the spatial extent of the herring spawn.
+Transects are set perpendicular to the shore.
+Generally, transects are set $200\,\text{m}$ in from the ends of the spawn, and spaced $350\,\text{m}$ apart.
+Most areas on the coast where herring spawn have permanent transects to allow survey crews to replicate transects from previous years.
+When permanent transects are not available, survey crews create new transects based on pre-specified criteria.
+We digitize these new transects, which are then available as permanent transects.
+
+In this report, `length' usually refers to distances parallel to the shore, and `width' usually refers to distances perpendicular to the shore.
+Thus, `Macrocystis length' and `vegetation length' refer to the distance that Macrocystis and vegetation extends parallel to the shore, respectively.
+One exception is transect width, $TransectWidth = 2\,\text{m}$, which refers to the distance parallel to the shore because transects are set perpendicular to the shore.
+
+\subsection{SURFACE SPAWN}
+
+How are surface surveys conducted?
+
+\subsection{MACROCYSTIS SPAWN}
+
+Macrocystis spawn surveys are a census of Macrocystis plants within $1\,\text{m}$ of the transect line.
+Divers categorize Macrocystis plants as either `mature' or `immature' based on stipe height.
+Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
+For each mature plant, divers record plant height, number of egg layers, and number of fronds.
+
+\subsection{UNDERSTORY SPAWN}
+
+Quardats are placed along transects, with a target of $\geq 5$ quadrats per transect, with a minimum spacing of $2\,\text{m}$, and a maximum spacing of $40\,\text{m}$.
+Quadrat size for understory spawn surveys is usually $0.5\,\text{m}^{2}$; other sizes have been used for research, but not for spawn surveys.
+Within each quadrat, divers record the dominant or most heavily spawned substrate type, percentage of the quadrat covered in spawn, and number of egg layers.
+In addition, divers identify (at most) three dominant vegetation types that have spawn.
+For each of these vegetation types, divers record the percentage of the quadrat covered by the vegetation, and number of egg layers.
 
 \section{FECUNDITY}\label{secFecund}
 
@@ -165,14 +202,6 @@ Although Pacific herring fecundity is affected by environmental variability and 
 \section{SURFACE SPAWN}\label{secSurf}
 
 Surface spawn surveys collect data along transects, and we calculate spawn metrics at the transect, and spawn/bed level.
-\begin{itemize}
-\item Brief description of surface spawn surveys, and types of data collected.%
-\footnote{I think we should provide a brief/general description for each survey type because I'm not sure how to reference the `Herring spawn survey manual.' 
-Maybe the full details, including for example, the rational for transect and quadrat size and interval, should be in a separate Technical Report so that we can reference it? 
-Maybe Matt T can give a brief description here, and for the other two surveys?}
-\item For surface spawn, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
-\item (MT) Surface surveys can follow the pre-determined transects of a dive survey chart, or can make their own spawn area... we can discuss and clarify further.
-\end{itemize}
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
@@ -198,7 +227,8 @@ where $EggDensT$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 \caption[Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys]
 {Spawn intensity categories and associated egg layers for Pacific herring surface spawn surveys for the periods 1928--1950, and 1951--1978 \citep{HumphreysHaegele1976, HayKronlund1987}.
 \textbf{These values aren't directly from \citet{HumphreysHaegele1976} or \citet{HayKronlund1987}. Any idea where they're from?
-Also, \citet{HayKronlund1987} says that the change from 5 to 9 categories happened in 1969, which seems to be incorrect based on intensity values in the database, unless the database was retroactively updated at some point?}
+Also, \citet{HayKronlund1987} says that the change from 5 to 9 categories happened in 1969, which seems to be incorrect based on intensity values in the database, unless the database was retroactively updated at some point?
+They say the change from 5 to 9 categories was ``probably to accomodate the practice of reporting intermediate categories (such as 3.5).''}
 Starting in 1979, spawn surveyors estimated the number of egg layers, and they continued to record intensity until 1981 to provide overlap between the two methods.
 Note that intensity was sometimes recorded after being officially discontinued in 1981.
 }
@@ -207,7 +237,6 @@ Note that intensity was sometimes recorded after being officially discontinued i
 \multicolumn{2}{c}{Intensity category} & \\
 1928--1950 & 1951--1978 & Egg layers\\
 \midrule
-0 & 0 & 0.0000 \\
 1 & 1 & 0.5529 \\
   & 2 & 0.9444 \\
 2 & 3 & 1.3360 \\
@@ -255,25 +284,17 @@ We update the following records:
 \section{MACROCYSTIS SPAWN}\label{secMacro}
 
 Macrocystis spawn surveys collect data for individual plants, and we calculate spawn metrics at the transect, and spawn levels.
-Macrocystis plants are categorized as either `mature' or `immature' based on stipe height.
-Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
-\begin{itemize}
-\item Brief description of Macrocystis spawn surveys, and types of data collected.
-\item For Macrocystis spawn, `length' generally refers to distances parallel to the shore, and `width' generally refers to distances perpendicular to the shore.
-\item The only exception is transect width, $WidthT = 2\,\text{m}$, which refers to the distance parallel to the shore.
-\item Thus, `Macrocystis length' is the distance that Macrocystis extends parallel to the shore.
-\end{itemize}
 
 \subsection{TRANSECT LEVEL CALCULATIONS}
 
-Several metrics are collected at the transect level: transect length $LengthT$, transect width $WidthT$, and Macrocystis length $LengthMacroT$, all in metres, as well as transect area $AreaT$, in square metres.
+Several metrics are collected at the transect level: width $WidthT$, transect width $TransectWidth$, and Macrocystis length $LengthMacroT$, all in metres, as well as transect area $AreaT$, in square metres.
 If $LengthMacroT$ is inadvertently not recorded, we set $LengthMacroT$ to the transect length $Length$.
-In addition, we calculate metrics for mature Macrocystis plants: mean height $HeightMeanT$ in metres, mean egg layers $LayersMeanT$, total number of fronds $FrondsTotT$, and total number of plants $PlantsTotT$.
+In addition, we calculate metrics for mature Macrocystis plants: mean height $HeightMeanT$ in metres, mean egg layers $EggLyrsMeanT$, total number of fronds $FrondsTotT$, and total number of plants $PlantsTotT$.
 
 \subsection{SPAWN LEVEL CALCULATIONS}
 
-At the spawn level, the mean of $LengthMacroT$ is $LengthMacroMeanS$, the mean of $LengthT$ is $LengthMeanS$, and the sum of $AreaT$ is $AreaTotS$, all in metres.
-In addition, the sum of $PlantsTotT$ is $PlantsTotS$, the sum of $FrondsTotT$ is $FrontsTotS$, the mean of $HeightMeanT$ is $HeightMeanS$, and the mean of $LayersMeanT$ is $LayersMeanS$. 
+At the spawn level, the mean of $LengthMacroT$ is $LengthMacroMeanS$, the mean of $WidthT$ is $WidthMeanS$, and the sum of $AreaT$ is $AreaTotS$, all in metres.
+In addition, the sum of $PlantsTotT$ is $PlantsTotS$, the sum of $FrondsTotT$ is $FrontsTotS$, the mean of $HeightMeanT$ is $HeightMeanS$, and the mean of $EggLyrsMeanT$ is $EggLyrsMeanS$. 
 The number of fronds per plant is
 \begin{equation}
 FrondsPerPlantS = \frac{FrondsTotS} {PlantsTotS} \enspace .
@@ -281,20 +302,20 @@ FrondsPerPlantS = \frac{FrondsTotS} {PlantsTotS} \enspace .
 \end{equation}
 The number of eggs per plant in thousands is \citep{HaegeleSchweigert1990}
 \begin{multline}
-EggsPerPlantS = 0.073 \times LayersMeanS^{0.673} \times \\ 
+EggsPerPlantS = 0.073 \times EggLyrsMeanS^{0.673} \times \\ 
 HeightMeanS^{0.932} \times FrondsPerPlantS^{0.703} \times 1 \cdot 10^{3}
 \label{eqEggsPerPlantMacro}
 \end{multline}
 where $EggsPerPlantS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{plant}^{-1}$. 
 Macrocystis egg density in thousands is
 \begin{equation}
-EggDensS = \frac{EggsPerPlantS \times PlantsTotS} {AreaTotS}
+EggDensMeanS = \frac{EggsPerPlantS \times PlantsTotS} {AreaTotS}
 \label{eqEggDensityMacro}
 \end{equation}
-where $EggDenS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
+where $EggDensMeanS$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The Macrocystis spawn index is
 \begin{equation}
-MacroSI = \frac{EggDensS \times LengthMacroMeanS \times LengthMeanS} {1 \cdot 10^{5}}
+MacroSI = \frac{EggDensMeanS \times LengthMacroMeanS \times WidthMeanS} {1 \cdot 10^{5}}
 \label{eqBiomassMacro}
 \end{equation}
 where $MacroSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundityConv}).
@@ -303,13 +324,6 @@ where $MacroSI$ is in tonnes, based on the fecundity conversion factor (\autoref
 
 Understory spawn surveys collect data in quadrats, and we calculate spawn metrics at the quadrat, transect, and spawn levels.
 We calculate two separate estimates of egg density at the quadrat level: spawn on the bottom, and spawn on vegetation (i.e., algae).
-\begin{itemize}
-\item Brief description of Understory spawn surveys, and types of data collected.
-\item Quadrat size for understory spawn surveys is usually $0.5\,\text{m}^{2}$; what is spacing between quadrats?
-\item Other quadrat sizes have been used for research in the past, but not for spawn surveys.
-\item For understory spawn, `length' refers to distances parallel to the shore, and `width' refers to distances perpendicular to the shore.
-\item Thus, `vegetation length' is the distance that vegetation extends parallel to the shore.
-\end{itemize}
 
 \subsection{QUADRAT LEVEL CALCULATIONS}
 
