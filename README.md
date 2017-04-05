@@ -5,7 +5,7 @@ This report documents the calculations used to convert spawn survey observations
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 There are several steps to calculating the spawn index.
 First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index.
-Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory.
+Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis (*Macrocystis* spp.), and understory.
 Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale for Pacific herring science advice and fishery management in BC.
 In addition, we describe some sources of uncertainty in the spawn index calculations.
 Note that the 'spawn index' is not scaled by the spawn survey scaling parameter, *q* and therefore is not an estimate of spawning stock biomass.

@@ -2,6 +2,7 @@
 
 % 5. Make an inset in Figure 1 showing the NE Pacific Ocean (PNW)?
 % 7. If we add JS as an author, remove Personal Communications and Acknowledgements
+% 8. Rename: bottom to substrate, vegetation to algae
 
 %%%%% Preamble %%%%%
 
@@ -36,7 +37,7 @@ This report documents the calculations used to convert spawn survey observations
 There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
 There are several major steps to calculating the spawn index.
 First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index.
-Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory.
+Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis ($Macrocystis$ spp.), and understory.
 Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale for Pacific herring science advice and fishery management in BC.
 In addition, we describe some sources of uncertainty in the spawn index calculations.
 Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ and therefore is not an estimate of spawning stock biomass.}
@@ -109,7 +110,7 @@ Fourth, we consider it good practice to separate data from analyses.
 Finally, a separate \textbf{R} script will allow us to generate dynamic documents in the spirit of reproducible research using \textbf{knitr} \citep{Xie2015}.
 
 Spawn surveys collect data used to calculate the spawn index.
-There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis, and underwater observations of spawn on understory.
+There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory.
 Note that understory observations have two components: spawn on the bottom, and spawn on vegetation (i.e., algae).
 Surface spawn surveys are the least accurate of the three survey types, but they have the greatest temporal and spatial extent \citep{Schweigert1993b}.
 For example, surface spawn surveys were the only survey type prior to 1988, and they are still used extensively for minor spawns, remote spawns (i.e., outside stock assessment regions; see below), and unusually early or late spawns.
@@ -130,7 +131,7 @@ Bed widths are used to calculate the spawn index for surface surveys.
 \label{figBC}
 \end{figure}
 
-We have divided this report into sections to divide topics.
+We have divided this report into sections for different topics.
 First, we describe the data pre-processing that occurs when raw survey observations are imported into the database (\autoref{secData}).
 Second, we quantify Pacific herring fecundity (\autoref{secFecund}), which is critical to calculating the spawn index.
 Third, we describe the calculations for each of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
@@ -152,21 +153,22 @@ TODO:
 
 \section{SAMPLING PROTOCOL}\label{secSamp}
 
-Generally, Pacific herring spawn on [hard?] substrate and algae from the intertidal to subtidal.
-From above, herring spawns are typically bands running parallel to the shore.
-Each distinct spatial or temporal spawn has a unique `spawn number.'
-The spawn number is the finest scale that we calculate the spawn index.
+The following is a brief summary of the spawn survey sampling protocol in .. (Ref?).
+Generally, Pacific herring spawn on substrate and algae in the intertidal and subtidal zones, to $20\,\text{m}$ deep?
+We identify distinct spawns (either spatially or temporally) by a unique `spawn number.'
+The spawn number is the finest scale at which we calculate the spawn index.
 
-The first task is to map out the spatial extent of the herring spawn.
-Transects are set perpendicular to the shore.
-Generally, transects are set $200\,\text{m}$ in from the ends of the spawn, and spaced $350\,\text{m}$ apart.
-Most areas on the coast where herring spawn have permanent transects to allow survey crews to replicate transects from previous years.
-When permanent transects are not available, survey crews create new transects based on pre-specified criteria.
-We digitize these new transects, which are then available as permanent transects.
-
-In this report, `length' usually refers to distances parallel to the shore, and `width' usually refers to distances perpendicular to the shore.
-Thus, `Macrocystis length' and `vegetation length' refer to the distance that Macrocystis and vegetation extends parallel to the shore, respectively.
+Herring spawns typically extend along the shore; from above they spawns to be bands running parallel to the shore.
+It is from this perspective that we define the spawn `length' and `width': length usually refers to distances parallel to the shore, and width usually refers to distances perpendicular to the shore.
+Thus, Macrocystis length, $LengthMacroT$ and vegetation length, $LengthVegS$ refer to the distance that Macrocystis and vegetation extend parallel to the shore, respectively.
 One exception is transect width, $TransectWidth = 2\,\text{m}$, which refers to the distance parallel to the shore because transects are set perpendicular to the shore.
+
+When surveying spawn, the first task is to map out the spatial extent of the herring spawn in terms of length and width.
+Next, transects are generally set $200\,\text{m}$ in from the ends of the spawn, and spaced $350\,\text{m}$ apart along the length.
+Transects are set perpendicular to the shore, and go from 0 to $20\,\text{m}$ depth?
+Most areas where herring spawn have permanent transects which allow survey crews to replicate transects from previous years.
+When permanent transects are unavailable, survey crews set new transects based on pre-specified criteria.
+We then digitize these new transects to make then available as permanent transects for future spawn surveys.
 
 \subsection{SURFACE SPAWN}
 
@@ -177,7 +179,7 @@ How are surface surveys conducted?
 Macrocystis spawn surveys are a census of Macrocystis plants within $1\,\text{m}$ of the transect line.
 Divers categorize Macrocystis plants as either `mature' or `immature' based on stipe height.
 Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
-For each mature plant, divers record plant height, number of egg layers, and number of fronds.
+For each mature plant, divers record the height, number of egg layers, and number of fronds.
 
 \subsection{UNDERSTORY SPAWN}
 
