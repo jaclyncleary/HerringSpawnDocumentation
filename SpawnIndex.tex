@@ -156,12 +156,12 @@ Female Pacific herring produce an average of approximately 200 eggs per gram, g 
 We assume that females account for 50\% of spawners, and we use the following fecundity conversion factor for eggs to tonnes, t of spawners
 \begin{equation}
 fecundity = \frac{eggs} {\text{g}} \times pFemale \times \frac{1 \cdot 10^{6}~\text{g}} {\text{t}}
-\label{eqFecundityConv}
+\label{eqFecundity}
 \end{equation}
 where $eggs$ is the number of eggs per gram of total body weight (200), $pFemale$ is the proportion of spawners that are female (0.5), and $fecundity$ is in $\text{eggs} \cdot \text{t}^{-1}$.
 Note that our unit of measurement for eggs is in thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report.
-%Therefore, we divide $fecundity$ by $10^{3}$ ($= 10^{5}$) to calculate an index of spawning biomass (i.e., the spawn index) in tonnes.
-Although Pacific herring fecundity is affected by environmental variability and other factors, we expect that bias to the spawn index from using \autoref{eqFecundityConv} is insignificant in most areas and years \citep{Schweigert1993b}.
+%Thus, we convert eggs to tonnes by... $$
+Although Pacific herring fecundity is affected by environmental variability and other factors, we assume that bias to the spawn index from using \autoref{eqFecundity} is insignificant in most areas and years \citep{Schweigert1993b}.
 
 \section{SAMPLING PROTOCOL}\label{secSamp}
 
@@ -263,7 +263,7 @@ The surface spawn index is
 SurfSI = \frac{EggDensMeanS \times Length \times WidthS \times 1 \cdot 10^{3}} {fecundity}
 \label{eqBiomassSurf}
 \end{equation}
-where $SurfSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundityConv}).
+where $SurfSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundity}).
 
 \subsection{MANUAL CORRECTIONS}\label{subsecUpdate}
 
@@ -321,7 +321,7 @@ MacroSI = \\
 \frac{EggDensMeanS \times LengthMacroMeanS \times WidthMeanS \times 1 \cdot 10^{3}} {fecundity}
 \label{eqBiomassMacro}
 \end{multline}
-where $MacroSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundityConv}).
+where $MacroSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundity}).
 
 \section{UNDERSTORY SPAWN}\label{secUnder}
 
@@ -415,7 +415,7 @@ The understory spawn index is
 UnderSI = \frac{EggDensWtS \times LengthAlgS \times WidthMeanS \times 1 \cdot 10^{3}} {fecundity}
 \label{eqBiomassUnder}
 \end{equation}
-where $UnderSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundityConv}).
+where $UnderSI$ is in tonnes, based on the fecundity conversion factor (\autoref{eqFecundity}).
 
 \section{TOTAL SPAWN}\label{secTotal}
 
@@ -432,7 +432,7 @@ As previously mentioned, the `spawn index' is not scaled by the spawn survey sca
 
 Like all ecosystem models, spawn index calculations are affected by various potential sources of uncertainty including natural variability, observation error (e.g., bias, imprecision), and model structural complexity \citep{LinkEtal2012}.
 Two examples illustrate these sources of uncertainty.
-First, natural variability may affect estimated Pacific herring fecundity, and the sex ratio of spawning herring (\autoref{eqFecundityConv}).
+First, natural variability may affect estimated Pacific herring fecundity, and the sex ratio of spawning herring (\autoref{eqFecundity}).
 For example, fecundity could be influenced by time-varying biological processes such as the observed non-stationarity of weight-at-age, or a truncated age distribution.
 Second, observation error may affect input data such as the number of egg layers, and model strutural complexity may affect estimated prediction model parameters, and the form of their relationship (e.g., \autoref{eqEggDensSurf}).
 Despite these assumptions and sources of uncertainty, the spawn index has typically been repoted without quantifying uncertainty.
