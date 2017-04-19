@@ -84,11 +84,13 @@
 % Abstract
 \newcommand{\trAbstract}{
 The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada. This report documents how we calculate the spawn index from spawn survey observations (e.g., number of egg layers, extent, substrate type). There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory. We calculate the spawn index in several steps. First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index. Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory. Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale of science advice and fishery management for Pacific herring in BC. In addition, we describe some sources of uncertainty in our spawn index calculations. Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ and therefore is not an estimate of spawning stock biomass.
+%\input{README.md}
 }
 
 % Resume (i.e., French abstract)
 \newcommand{\trResume}{
 [Et en français...]
+%resText
 }
 
 % Set document options
@@ -285,6 +287,7 @@ Note that intensity was sometimes recorded after being officially discontinued i
 \multicolumn{2}{c}{Intensity category} & \\
 1928--1950 & 1951--1978 & Egg layers\\
 \midrule
+0 & 0 & 0.0000 \\
 1 & 1 & 0.5529 \\
   & 2 & 0.9444 \\
 2 & 3 & 1.3360 \\
@@ -313,20 +316,20 @@ where $SurfSI$ is in tonnes, based on the fecundity conversion factor (\autoref{
 
 \subsection{MANUAL CORRECTIONS}\label{subsecUpdate}
 
-There are several survey records with missing or inaccurate egg layer information in the surface spawn database.
+There are several records with missing or inaccurate egg layer information in the surface spawn database.
 We update $EggLyrsTotT$ for these records... why/how  (J.~Schweigert, personal communication, 21 February 2017)?
 For example, in most/some cases we update $EggLyrsTotT$ based on spawn intensity categories (\autoref{tabIntensity}).
-This section needs work.
+(\textbf{This subsection needs work.})
 %Missing or inaccurate egg layer information.
 %One update changes the intensity from 0 to 1 to reflect...?
 We update the following records:
 \begin{enumerate}
-\item Update $EggLyrsTotT$ to 2.1496 for the 15 records in the year 1979, statistical area 2, and with intensity 4; \label{up1979}
-\item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with intensity 0; \label{up1962}
-\item Update $EggLyrsTotT$ to 0.5529 for the 4 records in the year 1981, statistical area 24, and with $EggLyrsTotT = 0$; \label{up1981}
-\item Update $EggLyrsTotT$ to 1.3360 for the 7 records in the year 1982, statistical area 23, and with intensity 3; \label{up1982a}
-\item Update $EggLyrsTotT$ to 2.33\footnote{Where does this come from?} for the 41 records in the year 1984, statistical area 24, and with intensity 0; and \label{up1984}
-\item Update $EggLyrsTotT$ to 2.98\footnote{Where does this come from?} for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$. \label{up1982b}
+\item Update $EggLyrsTotT$ to 2.1496 for the 15 records in the year 1979, statistical area 2, and with intensity 4;
+\item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with intensity 0;
+\item Update $EggLyrsTotT$ to 0.5529 for the 4 records in the year 1981, statistical area 24, and with $EggLyrsTotT = 0$;
+\item Update $EggLyrsTotT$ to 1.3360 for the 7 records in the year 1982, statistical area 23, and with intensity 3;
+\item Update $EggLyrsTotT$ to 2.33\footnote{Where does this come from?} for the 41 records in the year 1984, statistical area 24, and with intensity 0; and
+\item Update $EggLyrsTotT$ to 2.98\footnote{Where does this come from?} for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$.
 \end{enumerate}
 
 \section{MACROCYSTIS SPAWN}\label{secMacro}

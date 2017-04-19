@@ -1,5 +1,5 @@
 # Function to import and convert markdown to latex
-LoadMarkdown <- function( file ) {
+ImportMarkdown <- function( file ) {
   # Grab the markdown text
   mdText <- readLines( con=file )
   # Remove empty lines
@@ -16,4 +16,4 @@ LoadMarkdown <- function( file ) {
   res <- paste( x=texText, collapse=" " )
   # Return the string without quotes
   return( noquote(res) )
-}  # End LoadMarkdown function
+}  # End ImportMarkdown function
