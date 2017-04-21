@@ -74,7 +74,7 @@
 \newcommand{\trAddy}{Fisheries and Oceans Canada\\Science Branch, Pacific Region\\Pacific Biological Station\\3190 Hammond Bay Road\\Nanaimo, BC \enskip V9T 6N7}
 
 % New definition: Citation
-\newcommand{\trReference}{
+\newcommand{\trCitation}{
 \begin{hangparas}{1em}{1}
 \trAuthsBack{} \trYear{}. \trTitle{}. Can. Tech. Rep. Fish. Aquat. Sci. \trReportNum{}: \pageref{TRlastRoman}{}\,+\,\pageref{LastPage}{}\,p.
 \end{hangparas}}
@@ -97,7 +97,7 @@ The spawn index time series is one component of Pacific herring ($Clupea$ $palla
 %\linenumbers  % For drafts
 %\onehalfspacing  % For drafts
 
-% Let it begin
+% Let it begin..
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
@@ -174,11 +174,12 @@ Bed widths are used to calculate the spawn index for surface surveys.
 \centering
 \includegraphics[width=\linewidth]{Figures/BC.pdf}
 \caption[Boundaries for Pacific herring stock assessment regions (SARs)]
-{Boundaries for British Columbia Pacific herring stock assessment regions (SARs): there are five major SARs (Haida Gwaii, HG; Prince Rupert District, PRD; Central Coast, CC; Strait of Georgia, SoG; and West Coast Vancouver Island, WCVI), and two minor SARs (Area 27, A27; and Area 2 West, A2W).}
+{Boundaries for British Columbia Pacific herring stock assessment regions (SARs; thick dashed lines): there are five major SARs (Haida Gwaii, HG; Prince Rupert District, PRD; Central Coast, CC; Strait of Georgia, SoG; and West Coast Vancouver Island, WCVI), and two minor SARs (Area 27, A27; and Area 2 West, A2W).
+Statistical areas are indicated by thin solid lines.}
 \label{figBC}
 \end{figure}
 
-We have divided this report into sections.
+This report is divided into sections.
 First, we quantify Pacific herring fecundity (\autoref{secFecund}), which is critical to calculating the spawn index.
 Next, we  provide a brief overview of the sampling protocol for the three spawn survey types (\autoref{secSamp}).
 Then, we describe the calculations for each of the three aforementioned spawn survey types: surface (\autoref{secSurf}), Macrocystis (\autoref{secMacro}), and understory (\autoref{secUnder}).
@@ -186,17 +187,17 @@ Within each section, each level of spatial aggregation (e.g., calculations at th
 Next, we combine the three spawn indices to get the total spawn index (\autoref{secTotal}).
 We also discuss some sources of uncertainty in spawn index calculations (\autoref{secUncertain}).
 Finally, we describe how users can download and run the \textbf{R} script to calculate the spawn index (\autoref{secDown}).
-Note that we have avoided subscript notation in the following equations to correspond with the \textbf{R} script which does not use subscripts (e.g., no `for' loops or indexing).%make this report more accessible, and to
+Note that we have avoided subscript notation in the following equations to correspond with the \textbf{R} script which avoids subscripts (e.g., no `for' loops or indexing).%make this report more accessible, and to
 \footnote{We could add subscript notation if required.}
 
-\section{DATA PRE-PROCESSING}\label{secData}
-
-TODO:
-\begin{itemize}
-\item Describe the database calculations/pre-processing (if any?) that occurs in the \textbf{Microsoft Access} database when raw survey data are entered, which create the tables imported by \texttt{SpawnIndex.R} (e.g., \texttt{tSSAllspawn}, \texttt{tSSMacTrans}).
-\item Reproduce these in \textbf{R} to fully understand them, instead of relying on the database?
-\item (MT) Would have to look into this more, but I do not think there are any pre-calculations from the survey data entry program.
-\end{itemize}
+%\section{DATA PRE-PROCESSING}\label{secData}
+%
+%TODO:
+%\begin{itemize}
+%\item Describe the database calculations/pre-processing (if any?) that occurs in the \textbf{Microsoft Access} database when raw survey data are entered, which create the tables imported by \texttt{SpawnIndex.R} (e.g., \texttt{tSSAllspawn}, \texttt{tSSMacTrans}).
+%\item Reproduce these in \textbf{R} to fully understand them, instead of relying on the database?
+%\item (MT) Would have to look into this more, but I do not think there are any pre-calculations from the survey data entry program.
+%\end{itemize}
 
 \section{FECUNDITY}\label{secFecund}
 
@@ -207,13 +208,13 @@ fecundity = \frac{eggs} {\text{g}} \times pFemale \times \frac{1 \cdot 10^{6}~\t
 \label{eqFecundity}
 \end{equation}
 where $eggs$ is the number of eggs per gram of total body weight (200), $pFemale$ is the proportion of spawners that are female (0.5), and $fecundity$ is in $\text{eggs} \cdot \text{t}^{-1}$.
+Thus, we convert eggs to tonnes of spawning herring by dividing by $fecundity = 1 \cdot 10^{8}\,\text{eggs} \cdot \text{t}^{-1}$.
 Note that our unit of measurement for eggs is in thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report.
-%Thus, we convert eggs to tonnes by... $$
 Although Pacific herring fecundity is affected by environmental variability and other factors, we assume that bias to the spawn index from using \autoref{eqFecundity} is insignificant in most areas and years \citep{Schweigert1993b}.
 
 \section{SAMPLING PROTOCOL}\label{secSamp}
 
-The following is a brief summary of the spawn survey sampling protocol in .. (Ref?).
+The following is a brief summary of the spawn survey sampling protocol in... (Ref?).
 Generally, Pacific herring spawn on substrate and algae in the intertidal and subtidal zones, to $20\,\text{m}$ deep?
 We identify distinct spawns (either spatially or temporally) by a unique `spawn number.'
 The spawn number is the finest scale at which we calculate the spawn index.
@@ -223,12 +224,12 @@ Thus, spawn `length' usually refers to distances parallel to the shore, and `wid
 For example, Macrocystis length, $LengthMacroT$ and algae length, $LengthAlgS$ refer to the distance that Macrocystis and algae extend parallel to the shore, respectively.
 One exception is transect width, $TransectWidth = 2\,\text{m}$, which refers to the distance parallel to the shore.
 
-When surveying spawn, the first task is to map out the spatial extent of the herring spawn in terms of length and width.
-Next, transects are generally set $200\,\text{m}$ in from the edges, and spaced $350\,\text{m}$ apart along the length.
-Transects are set perpendicular to the shore, and go from 0 to $20\,\text{m}$ depth?
-Most areas where herring spawn have permanent transects which allow survey crews to replicate transects from previous years.
-When permanent transects are unavailable, survey crews set new transects based on pre-specified criteria.
-We then digitize these new transects to make then available as permanent transects for future spawn surveys.
+When surveying spawn, survey crews first determine the spatial extent of the herring spawn in terms of length and width.
+Next, they set transects perpendicular to the shore, $200\,\text{m}$ in from the edges, and spaced $350\,\text{m}$ apart along the length.
+Transects go from 0 to $20\,\text{m}$ depth or the edge of the spawn, whichever is shallower.
+Most areas where herring spawn have `permanent transects' which are plotted on maps to enable crews to place transects in the same location each year.
+When permanent transects are unavailable, survey crews set new transects based on the aforementioned criteria.
+We digitize new transects to make then available as permanent transects for future spawn surveys.
 
 \subsection{SURFACE SPAWN}
 
@@ -239,14 +240,14 @@ How are surface surveys conducted?
 Macrocystis spawn surveys are a census of Macrocystis plants within $1\,\text{m}$ of the transect line.
 Divers categorize Macrocystis plants as either `mature' or `immature' based on stipe height.
 Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
-For each mature plant, divers record the height, number of egg layers, and number of fronds.
+For each mature plant, divers record the height, number of fronds, and number of egg layers.
 
 \subsection{UNDERSTORY SPAWN}
 
-Quardats are placed along transects, with a target of $\geq 5$ quadrats per transect, with a minimum spacing of $2\,\text{m}$, and a maximum spacing of $40\,\text{m}$.
+Quardats are placed along transects, with a target frequency of $\geq 5$ quadrats per transect, with a minimum spacing of $2\,\text{m}$, and a maximum spacing of $40\,\text{m}$.
 Quadrat size for understory spawn surveys is usually $0.5\,\text{m}^{2}$; other sizes have been used for research, but not for spawn surveys.
-Within each quadrat, divers record the dominant or most heavily spawned substrate type, percentage of the quadrat covered in spawn, and number of egg layers.
-In addition, divers identify (at most) three dominant algae types that have spawn.
+Within each quadrat, divers record the dominant (i.e., most heavily spawned) substrate type, percentage of the quadrat covered in spawn, and number of egg layers.
+In addition, divers identify the three dominant algae types that have spawn.
 For each of these algae types, divers record the percentage of the quadrat covered by the algae, and number of egg layers.
 
 \section{SURFACE SPAWN}\label{secSurf}

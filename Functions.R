@@ -10,6 +10,10 @@ ImportMarkdown <- function( file ) {
   mdText <- mdText[-commentLines]
   # Replace * with $ (for italics)
   texText <- gsub( pattern="\\*", replacement="$", x=mdText )
+  # Replace double qoutes with two single quotes
+  texText <- gsub( pattern='\\"', replacement="''", x=texText )
+  # Replace predecing quotes with directional quotes
+  texText <- gsub( pattern=" \\''", replacement=" ``", x=texText )
   # Replace predecing quote with directional quote
   texText <- gsub( pattern=" \\'", replacement=" `", x=texText )
   # Combine the results into one string

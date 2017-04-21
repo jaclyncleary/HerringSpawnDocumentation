@@ -47,6 +47,7 @@ Temporary Items
 .apdisk
 
 # Custom files/folders
+.Rhistory
 SpawnIndex.bbl
 SpawnIndex.lof
 SpawnIndex.log
