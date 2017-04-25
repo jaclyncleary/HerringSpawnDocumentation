@@ -97,7 +97,7 @@ The spawn index time series is one component of Pacific herring ($Clupea$ $palla
 Along with catch and biological time series, the spawn index is used to fit an integrated statistical catch-at-age model.
 Key results from the stock assessment model include stock reconstructions, estimated current stock status, and projected spawning biomass in the upcoming year.
 Projected spawning biomass is used to set allowable harvest levels.
-Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
+Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b}; therefore it is an index, not a direct estimate, of spawning stock biomass.
 
 This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index for Pacific herring in BC.
 The process and calculations described in this report have been documented elsewhere, in either published or informal, internal documents.
@@ -435,7 +435,7 @@ TotalSI = SurfSI + MacroSI + UnderSI
 \end{equation}
 where $TotalSI$ is in tonnes.
 Although we track the date and location (i.e., eastings, northings) for each spawn event, we aggregate the total spawn index by year and SAR to align with the temporal and spatial scale for Pacific herring science advice and fishery management in BC \citeyearpar[CSAS][]{CSAS2015b}.
-As previously mentioned, the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b} and therefore is not an estimate of spawning stock biomass.
+As previously mentioned, the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b}; therefore it is an index, not a direct estimate, of spawning stock biomass.
 
 \section{SOURCES OF UNCERTAINTY}\label{secUncertain}
 
