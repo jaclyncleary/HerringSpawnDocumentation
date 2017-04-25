@@ -54,8 +54,8 @@ absText <- ImportMarkdown( file="README.md" )
 }
 
 % Set document options
-%\linenumbers  % For drafts
-%\onehalfspacing  % For drafts
+\linenumbers  % For drafts
+\onehalfspacing  % For drafts
 
 % Let it begin..
 \begin{document}
@@ -105,7 +105,7 @@ Our goal is to collect and simplify the details necessary to understand the proc
 Spawn index calculations have been updated over the years as more data and analyses justify improvements; we restrict this report to describing the current methods.%
 \footnote{Include (or mention) `old' ways of calculating egg density? 
 For example, there are (at least) two ways for \autoref{eqEggDensUnderA}.
-I suspect this isn't necessary/relevant, and would open up a lot of discussion: there are a lot of `old' ways to calculate the spawn index...}
+I suspect this isn't necessary or relevant, and would open up a lot of discussion (i.e., there are a lot of `old' ways to calculate the spawn index).}
 
 The motivation to document the spawn index calculations came when we translated this process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
 We updated from a database to an \textbf{R} script for several reasons.
@@ -134,7 +134,7 @@ Bed widths are used to calculate the spawn index for surface surveys.
 \includegraphics[width=\linewidth]{Figures/BC.pdf}
 \caption[Boundaries for Pacific herring stock assessment regions (SARs)]
 {Boundaries for British Columbia Pacific herring stock assessment regions (SARs; thick dashed lines): there are five major SARs (Haida Gwaii, HG; Prince Rupert District, PRD; Central Coast, CC; Strait of Georgia, SoG; and West Coast Vancouver Island, WCVI), and two minor SARs (Area 27, A27; and Area 2 West, A2W).
-Statistical areas are indicated by thin solid lines.}
+Statistical area boundaries are indicated by thin solid lines.}
 \label{figBC}
 \end{figure}
 

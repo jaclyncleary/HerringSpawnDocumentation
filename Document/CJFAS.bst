@@ -212,7 +212,7 @@ FUNCTION {space.word}
  % Each function has a name bbl.xxx where xxx is the English word.
  % The language selected here is ENGLISH
 FUNCTION {bbl.and}
-{ ", and "}
+{ "and"}
 
 FUNCTION {bbl.etal}
 { "et~al." }
@@ -403,7 +403,8 @@ FUNCTION {format.names}
                   " " * bbl.etal *
                 }
                 {
-                  bbl.and * t *
+                  ", " * bbl.and
+                  space.word  * t *
                 }
               if$
             }
@@ -447,7 +448,7 @@ FUNCTION {format.names.ed}
                   " " * bbl.etal *
                 }
                 {
-                  bbl.and
+                  ", " * bbl.and
                   space.word * t *
                 }
               if$
@@ -541,7 +542,7 @@ FUNCTION {format.full.names}
                   " " * bbl.etal *
                 }
                 {
-                  bbl.and
+                  ", " * bbl.and
                   space.word * t *
                 }
               if$

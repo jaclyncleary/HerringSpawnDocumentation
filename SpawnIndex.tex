@@ -83,7 +83,7 @@
 
 % Abstract
 \newcommand{\trAbstract}{
-The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada. This report documents how we calculate the spawn index from spawn survey observations (e.g., number of egg layers, extent, substrate type). There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory. We calculate the spawn index in several steps. First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index. Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory. Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale of science advice and fishery management for Pacific herring in BC. In addition, we describe some sources of uncertainty in our spawn index calculations. Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ and therefore is not an estimate of spawning stock biomass. % I'm not a huge fan of this
+The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada. This report documents how we calculate the spawn index from spawn survey observations (e.g., number of egg layers, extent, substrate type). There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory. We calculate the spawn index in several steps. First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index. Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory. Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale of science advice and fishery management for Pacific herring in BC. In addition, we describe some sources of uncertainty in our spawn index calculations. Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$; therefore it is an index, not a direct estimate, of spawning stock biomass.
 %\input{README.md}
 }
 
@@ -94,8 +94,8 @@ The spawn index time series is one component of Pacific herring ($Clupea$ $palla
 }
 
 % Set document options
-%\linenumbers  % For drafts
-%\onehalfspacing  % For drafts
+\linenumbers  % For drafts
+\onehalfspacing  % For drafts
 
 % Let it begin..
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -146,7 +146,7 @@ Our goal is to collect and simplify the details necessary to understand the proc
 Spawn index calculations have been updated over the years as more data and analyses justify improvements; we restrict this report to describing the current methods.%
 \footnote{Include (or mention) `old' ways of calculating egg density? 
 For example, there are (at least) two ways for \autoref{eqEggDensUnderA}.
-I suspect this isn't necessary/relevant, and would open up a lot of discussion: there are a lot of `old' ways to calculate the spawn index...}
+I suspect this isn't necessary or relevant, and would open up a lot of discussion (i.e., there are a lot of `old' ways to calculate the spawn index).}
 
 The motivation to document the spawn index calculations came when we translated this process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
 We updated from a database to an \textbf{R} script for several reasons.
@@ -175,7 +175,7 @@ Bed widths are used to calculate the spawn index for surface surveys.
 \includegraphics[width=\linewidth]{Figures/BC.pdf}
 \caption[Boundaries for Pacific herring stock assessment regions (SARs)]
 {Boundaries for British Columbia Pacific herring stock assessment regions (SARs; thick dashed lines): there are five major SARs (Haida Gwaii, HG; Prince Rupert District, PRD; Central Coast, CC; Strait of Georgia, SoG; and West Coast Vancouver Island, WCVI), and two minor SARs (Area 27, A27; and Area 2 West, A2W).
-Statistical areas are indicated by thin solid lines.}
+Statistical area boundaries are indicated by thin solid lines.}
 \label{figBC}
 \end{figure}
 

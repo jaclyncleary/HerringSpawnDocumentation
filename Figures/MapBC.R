@@ -96,9 +96,9 @@ BCMap <- ggplot( data=shapes$landAllCropDF, aes(x=Eastings, y=Northings) ) +
   geom_path( data=shapes$saAllDF, aes(group=StatArea), size=0.25, 
              colour="black" ) +
   geom_label( data=shapes$regCentDF, alpha=0.5, aes(label=Region) ) +
-  annotate( geom="text", x=1100000, y=800000, label="British\nColumbia",
-            size=5 ) +
-  annotate( geom="text", x=650000, y=550000, label="Pacific\nOcean", 
+  annotate( geom="text", x=1100000, y=800000, 
+            label="British\nColumbia,\nCanada", size=5 ) +
+  annotate( geom="text", x=650000, y=550000, label="Northeast\nPacific\nOcean", 
             size=5 ) +
   coord_equal( ) +
   labs( x="Eastings (km)", y="Northings (km)", caption=geoProj ) +
@@ -107,7 +107,7 @@ BCMap <- ggplot( data=shapes$landAllCropDF, aes(x=Eastings, y=Northings) ) +
   myTheme +
   theme_bw( ) +
   ggsave( filename="BC.pdf", width=figWidth, 
-          height=min(8, 5.75/shapes$xyAllRatio) )
+          height=min(8, 5.7/shapes$xyAllRatio) )
 
 
 ##################
