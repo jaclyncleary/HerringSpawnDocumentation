@@ -136,16 +136,13 @@ The spawn index time series is one component of Pacific herring ($Clupea$ $palla
 The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada \citeyearpar[CSAS][]{CSAS2015b}.
 Along with catch and biological time series, the spawn index is used to fit an integrated statistical catch-at-age model.
 Key results from the stock assessment model include stock reconstructions, estimated current stock status, and projected spawning biomass in the upcoming year.
-Projected spawning biomass is used to set allowable harvest levels.
+Projected spawning biomass is used to create harvest decision tables.
 Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b}; therefore it is an index, not a direct estimate, of spawning stock biomass.
 
 This report documents the calculations used to convert spawn survey observations (e.g., number of egg layers, extent, substrate) to the spawn index for Pacific herring in BC.
 The process and calculations described in this report have been documented elsewhere, in either published or informal, internal documents.
 Our goal is to collect and simplify the details necessary to understand the process for calculating the spawn index.
-Spawn index calculations have been updated over the years as more data and analyses justify improvements; we restrict this report to describing the current methods.%
-\footnote{Include (or mention) `old' ways of calculating egg density? 
-For example, there are (at least) two ways for \autoref{eqEggDensUnderA}.
-I suspect this isn't necessary or relevant, and would open up a lot of discussion (i.e., there are a lot of `old' ways to calculate the spawn index).}
+Spawn index calculations have been updated over the years as more data and analyses justify improvements; we restrict this report to describing the current methods.
 
 The motivation to document the spawn index calculations came when we translated this process from a \textbf{Microsoft Access} database to an \textbf{R} \citeyearpar[RCT][]{R-3.3.2} script.
 We updated from a database to an \textbf{R} script for several reasons.
@@ -214,7 +211,7 @@ Although Pacific herring fecundity is affected by environmental variability and 
 \section{SAMPLING PROTOCOL}\label{secSamp}
 
 The following is a brief summary of the spawn survey sampling protocol in... (Ref?).
-Generally, Pacific herring spawn on substrate and algae in the intertidal and subtidal zones, to $20\,\text{m}$ deep?
+Pacific herring primarily spawn in sheltered bays and inlets, depositing their eggs on rocks and algae between depths of $1.5\,\text{m}$ above, and $18\,\text{m}$ below, the 0-tide level \citep{HumphreysHourston1978}.
 We identify distinct spawns (either spatially or temporally) by a unique `spawn number.'
 The spawn number is the finest scale at which we calculate the spawn index.
 
@@ -226,20 +223,26 @@ One exception is transect width, $TransectWidth = 2\,\text{m}$, which refers to 
 When surveying spawn, survey crews first determine the spatial extent of the herring spawn in terms of length and width.
 Next, they set transects perpendicular to the shore, $200\,\text{m}$ in from the edges, and spaced $350\,\text{m}$ apart along the length.
 Transects go from 0 to $20\,\text{m}$ depth or the edge of the spawn, whichever is shallower.
-Most areas where herring spawn have `permanent transects' which are plotted on maps to enable crews to place transects in the same location each year.
+Most areas have `permanent transects' which are plotted on maps to enable crews to place transects in the same location each year.
 When permanent transects are unavailable, survey crews set new transects based on the aforementioned criteria.
 We digitize new transects to make then available as permanent transects for future spawn surveys.
 
 \subsection{SURFACE SPAWN}
 
-How are surface surveys conducted?
+Preliminary (MT):
+Dive surveys works off regularly spaced transects and sampling stations, while surface survey sampling intervals are subject to surveyor judgement.
+If the spawning bed is large enough, surface surveyors usually work from the same transect charts as dive surveys.
+Small spawns can still be mapped as they were historically, with the surveyor deciding how to divide the bed up into sections.
+End of spawns are mapped to determine spawn length.
+Regular rakes throughout the spawn bed determine vegetation type, number of egg layers and vegetation coverage.
 
 \subsection{MACROCYSTIS SPAWN}
 
-Macrocystis spawn surveys are a census of Macrocystis plants within $1\,\text{m}$ of the transect line.
+Macrocystis spawn surveys are a census of Macrocystis plants within $1\,\text{m}$ of the transect line, on both the left- and right-hand sides.
 Divers categorize Macrocystis plants as either `mature' or `immature' based on stipe height.
 Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
-For each mature plant, divers record the height, number of fronds, and number of egg layers.
+For each mature plant, divers record the height, and number of fronds.
+For each transect, divers record the number of egg layers.
 
 \subsection{UNDERSTORY SPAWN}
 
@@ -248,6 +251,7 @@ Quadrat size for understory spawn surveys is usually $0.5\,\text{m}^{2}$; other 
 Within each quadrat, divers record the dominant (i.e., most heavily spawned) substrate type, percentage of the quadrat covered in spawn, and number of egg layers.
 In addition, divers identify the three dominant algae types that have spawn.
 For each of these algae types, divers record the percentage of the quadrat covered by the algae, and number of egg layers.
+%Note that divers also record algae height, which is not used in the calculations.
 
 \section{SURFACE SPAWN}\label{secSurf}
 
