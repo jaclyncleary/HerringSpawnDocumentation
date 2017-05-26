@@ -189,6 +189,7 @@
   institution = {Department of Fisheries and the Environment, Fisheris and Marine Service},
   year        = {1978},
   type        = {Miscellaneous Special Publication},
+  number      = {38},
   abstract    = {Types of vegetation in British Columbia waters on which herring spawn is deposited and methods for estimating the number of egg layers deposited are described and illustrated. Procedures for recording herring spawn depositions are described and the role of this information in annual stock assessments is discussed.},
   file        = {:Articles\\HumphreysHourston1978 - British Columbia herring spawn deposition survey manual.pdf:PDF},
   groups      = {SpawnIndex},
