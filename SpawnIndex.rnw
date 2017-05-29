@@ -17,7 +17,7 @@
 \newcommand{\trReportNum}{XXXX}
 \newcommand{\trAuthFootA}{\footnote{E-mail: \texttt{Matthew.Grinnell@dfo-mpo.gc.ca} $|$ telephone: (250)~756.7055}}
 \newcommand{\trAuthsLong}{Matthew H. Grinnell,\trAuthFootA{} and others...}  % JC, MT, JS...
-\newcommand{\trAuthsBack}{Grinnell, M.\,H., et al...}
+\newcommand{\trAuthsBack}{Grinnell, M.H., et al...}
 
 % New definition: Address
 \newcommand{\trAddy}{Fisheries and Oceans Canada\\Science Branch, Pacific Region\\Pacific Biological Station\\3190 Hammond Bay Road\\Nanaimo, BC \enskip V9T 6N7}
@@ -52,7 +52,7 @@ absText <- ImportMarkdown( file="README.md" )
 %\Sexpr{resText}
 }
 
-% Set document options: drafts
+% Settings for draft: line numbers and spacing
 \linenumbers  % For drafts
 \onehalfspacing  % For drafts
 
@@ -73,7 +73,7 @@ absText <- ImportMarkdown( file="README.md" )
 \input{Document/2TechReportPage.tex}  % Tech report page
 \input{Document/3InsideCoverPage.tex}  % Inside cover page
 \input{Document/4ColophonPage.tex}  % Colophon page
-\pdfbookmark[1]{\contentsname}{toc}  % Add TOC to pdf bookmarks (clickable)
+\pdfbookmark[1]{\contentsname}{toc}  % Add TOC to pdf bookmarks (clickable pdf)
 \tableofcontents\clearpage  % Table of contents page
 \listoffigures \listoftables \clearpage  % Lists of figures and tables (optional)
 \input{Document/5AbstractPage.tex}  % Abstact and resume page
@@ -84,7 +84,7 @@ absText <- ImportMarkdown( file="README.md" )
 \renewcommand*{\thefootnote}{\arabic{footnote}}  % Back to numeric footnotes
 \setcounter{footnote}{0}  % And start at 1
 
-% Settings for drafts: header
+% Settings for draft: header
 \renewcommand{\headrulewidth}{1pt}  % Header line
 \pagestyle{fancy}\fancyhead[c]{Draft: Do not cite or circulate}  % Header text
 
@@ -154,21 +154,22 @@ Finally, we describe how users can download and run the \textbf{R} script to cal
 
 \section{FECUNDITY}\label{secFecund}
 
-Female Pacific herring produce an average of approximately 200 eggs per gram, g of total body weight \citep{Hay1985, HayBrett1988}.
+Female Pacific herring produce an average of approximately 200 eggs per gram, g of total female body weight \citep{Hay1985, HayBrett1988}.
 We assume that females account for 50\% of spawners, and we use the following fecundity conversion factor for eggs to tonnes, t of spawners
 \begin{equation}
 fecundity = \frac{eggs} {\text{g}} \times pFemale \times \frac{1 \cdot 10^{6}~\text{g}} {\text{t}}
 \label{eqFecundity}
 \end{equation}
-where $eggs$ is the number of eggs per gram of total body weight (200), $pFemale$ is the proportion of spawners that are female (0.5), and $fecundity$ is in $\text{eggs} \cdot \text{t}^{-1}$.
-Thus, we convert eggs to tonnes of spawning herring by dividing by $fecundity = 1 \cdot 10^{8}\,\text{eggs} \cdot \text{t}^{-1}$.
+where $eggs$ is the number of eggs, which we report as a function of total female body weight in $\text{eggs} \cdot \text{g}^{-1}$, $pFemale$ is the proportion of spawners that are female, and $fecundity$ is in $\text{eggs} \cdot \text{t}^{-1}$.
+We assume $eggs = 200$, and $pFemale = 0.5$ \citep{Hay1985}.
+Thus, we convert eggs to the spawn index in tonnes by dividing the number of eggs by $fecundity = 1 \cdot 10^{8}\,\text{eggs} \cdot \text{t}^{-1}$.
 Note that our unit of measurement for eggs is in thousands (i.e., $\text{eggs} \cdot 10^{3}$) in the \textbf{R} script, and correspondingly in this report.
 Although Pacific herring fecundity is affected by environmental variability and other factors, we assume that bias to the spawn index from using \autoref{eqFecundity} is insignificant in most areas and years \citep{Schweigert1993b}.
 
 \section{SAMPLING PROTOCOL}\label{secSamp}
 
 The following is a brief summary of the spawn survey sampling protocol in... (Ref?).
-Pacific herring primarily spawn in sheltered bays and inlets, depositing their eggs on rocks and algae between depths of $1.5\,\text{m}$ above, and $18\,\text{m}$ below, the 0-tide level \citep{HumphreysHourston1978}.
+In BC, Pacific herring primarily spawn in sheltered bays and inlets, depositing their eggs on rocks and algae between depths of $1.5\,\text{m}$ above, and $18\,\text{m}$ below, the 0-tide level \citep{HumphreysHourston1978}.
 We identify distinct spawns (either spatially or temporally) by a unique `spawn number.'
 The spawn number is the finest scale at which we calculate the spawn index.
 
@@ -187,24 +188,22 @@ We digitize new transects to make them available as permanent transects for futu
 \subsection{SURFACE SPAWN}
 
 \textbf{Preliminary (MT)}:
-While dive surveys have regularly spaced sampling intervals, surface survey sampling intervals are subject to surveyor judgement.
-If the spawning bed is large enough, surface surveys usually use the same permanent transects as dive surveys.
+Surface spawn surveyors use the aforementioned transect interval when possible, but the sampling interval relies on surveyor judgement. 
+If the spawn area is sufficiently large, surface surveyors usually use permanent transects.
 Small spawns can still be mapped as they were historically, with surveyors deciding how to sample the spawn.
-First, surveyors determine spawn length and width.
-Then, surveyors deploy specialized rakes throughout the spawn to determine vegetation type, number of egg layers, and vegetation coverage.
+To sample, surveyors deploy specialized rakes throughout the spawn to determine vegetation type, number of egg layers, and vegetation coverage.
 
 \subsection{MACROCYSTIS SPAWN}
 
 Macrocystis spawn surveyors take a census of Macrocystis plants within $1\,\text{m}$ of the transect line, on both the left- and right-hand sides.
-Divers categorize Macrocystis plants as either `mature' or `immature' based on stipe height.
-Mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
+Divers categorize Macrocystis plants as either `mature' or `immature' based on stipe height; mature plants have stipes $\geq1\,\text{m}$ high, and are the only plants used for Macrocystis spawn index calculations.
 For each mature plant, divers record the height, and number of fronds.
 For each transect, divers record the average number of egg layers.
 
 \subsection{UNDERSTORY SPAWN}
 
 Understory spawn surveyors place quadrats along transects, with a target frequency of $\geq 5$ quadrats per transect, with a minimum spacing of $2\,\text{m}$, and a maximum spacing of $40\,\text{m}$.
-Quadrat size for understory spawn surveys is usually $0.5\,\text{m}^{2}$; other sizes have been used for research, but not for spawn surveys.
+Quadrat size for understory spawn surveys is usually $0.5\,\text{m}^{2}$; other sizes have been used for research.
 Within each quadrat, divers record the dominant (i.e., most heavily spawned) substrate type, percentage of the quadrat covered by spawn, and number of egg layers.
 In addition, divers identify the three dominant algae types that have spawn.
 For each of these algae types, divers record the percentage of the quadrat covered by the algae, and number of egg layers.
@@ -279,22 +278,18 @@ where $SurfSI$ is in tonnes, based on the fecundity conversion factor (\autoref{
 
 \subsection{MANUAL CORRECTIONS}\label{subsecUpdate}
 
-There are several records with missing or inaccurate egg layer information in the surface spawn database.
-We update $EggLyrsTotT$ for these records... why/how  (J.~Schweigert, personal communication, 21 February 2017)?
-For example, in most/some cases we update $EggLyrsTotT$ based on spawn intensity categories (\autoref{tabIntensity}).
-(\textbf{This subsection needs work.})
-%Missing or inaccurate egg layer information.
-%One update changes the intensity from 0 to 1 to reflect...?
+Several records in the surface spawn database require updates to fix missing or inaccurate egg layer information (J.~Schweigert, personal communication, 21 February 2017)..
+Instead of updating the database permanently, we make these updates in the \textbf{R} script to be transparent, and to prevent a mismatch between the raw data sheets and the database.
 We update the following records:
 \begin{enumerate}
-\item Update $EggLyrsTotT$ to 2.1496 for the 15 records in the year 1979, statistical area 2, and with intensity 4;
-\item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with intensity 0;
-\item Update $EggLyrsTotT$ to 0.5529 for the 4 records in the year 1981, statistical area 24, and with $EggLyrsTotT = 0$;
-\item Update $EggLyrsTotT$ to 1.3360 for the 7 records in the year 1982, statistical area 23, and with intensity 3;
-\item Update $EggLyrsTotT$ to 2.33\footnote{Where does this come from?} for the 41 records in the year 1984, statistical area 24, and with intensity 0; and
-\item Update $EggLyrsTotT$ to 2.98\footnote{Where does this come from?} for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$.
+\item Update $EggLyrsTotT$ to 2.1496 for the 15 records in the year 1979, statistical area 2, and with intensity 4;\label{up1979}
+\item Update $EggLyrsTotT$ to 0.5529 for the 1 record in the year 1962, statistical area 14, and with intensity 0;\label{up1962}
+\item Update $EggLyrsTotT$ to 0.5529 for the 4 records in the year 1981, statistical area 24, and with $EggLyrsTotT = 0$;\label{up1981}
+\item Update $EggLyrsTotT$ to 1.3360 for the 7 records in the year 1982, statistical area 23, and with intensity 3;\label{up1982a}
+\item Update $EggLyrsTotT$ to 2.33\footnote{Where does this value come from?} for the 41 records in the year 1984, statistical area 24, and with intensity 0; and\label{up1984}
+\item Update $EggLyrsTotT$ to 2.98\footnote{Where does this value come from?} for the 14 records in the year 1982, statistical area 27, and with $EggLyrsTotT = 0$.\label{up1982b}
 \end{enumerate}
-We update these values manually in the \textbf{R} script instead of permanently in the database to be more transparent about the change (?).
+For example, updates \ref{up1979} \& \ref{up1982a} use intensity categories instead of layer estimates, updates \ref{up1962} \& \ref{up1981} change intensity categories from 0 to 1, and updates \ref{up1984} \& \ref{up1982b}..?
 
 \section{MACROCYSTIS SPAWN}\label{secMacro}
 
@@ -308,7 +303,7 @@ In addition, we calculate metrics for mature Macrocystis plants: mean height $He
 
 \subsection{SPAWN LEVEL CALCULATIONS}
 
-At the spawn level, the mean of $LengthMacroT$ is $LengthMacroMeanS$, the mean of $WidthT$ is $WidthMeanS$, and the sum of $AreaT$ is $AreaTotS$, all in metres.
+At the spawn level, the mean of $LengthMacroT$ is $LengthMacroMeanS$, and the mean of $WidthT$ is $WidthMeanS$, both in metres; the sum of $AreaT$ is $AreaTotS$, in $\text{m}^{2}$.
 In addition, the sum of $PlantsTotT$ is $PlantsTotS$, the sum of $FrondsTotT$ is $FrontsTotS$, the mean of $HeightMeanT$ is $HeightMeanS$, and the mean of $EggLyrsMeanT$ is $EggLyrsMeanS$. 
 The number of fronds per plant is
 \begin{equation}
@@ -339,29 +334,24 @@ where $MacroSI$ is in tonnes, based on the fecundity conversion factor (\autoref
 \section{UNDERSTORY SPAWN}\label{secUnder}
 
 Understory spawn surveyors collect data in quadrats, and we calculate spawn metrics at the quadrat, transect, and spawn levels.
-We calculate two separate estimates of egg density at the quadrat level: spawn on the substrate, and spawn on algae.
+We calculate two separate estimates of egg density at the quadrat level: spawn on substrate, and spawn on algae.
 
 \subsection{QUADRAT LEVEL CALCULATIONS}
 
 Substrate egg density in thousands is \citep{HaegeleEtal1979}
 \begin{equation}
-EggsDSub = 340 \times SubLayers \times SubProp
+EggsDSub = 340 \times SubLyrs \times SubProp
 \label{eqEggDensUnderB}
 \end{equation}
-where $SubLayers$ is the number of egg layers on the substrate, $SubProp$ is the proportion of the substrate covered in spawn, and $EggsDSub$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
+where $SubLyrs$ is the number of egg layers on the substrate, $SubProp$ is the proportion of the substrate covered by spawn, and $EggsDSub$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 Algae egg density in thousands is \citep{Schweigert2005}
 \begin{multline}
-EggsDAlg = 600.567 \times AlgLayers^{0.6355} \times AlgProp^{1.4130} \times A \times Q
+EggsDAlg = 600.567 \times AlgLyrs^{0.6355} \times AlgProp^{1.4130} \times A \times Q
 \label{eqEggDensUnderA}
 \end{multline}
-where $AlgLayers$ is the number of egg layers on a given algae type, $AlgProp$ is the proportion of the quadrat covered by the algae, $A$ is the algae coefficient (\autoref{tabAlgTypes}), $Q$ is the quadrat size coefficient (\autoref{tabQuadSize}), and $EggsDAlg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
-%Note that \autoref{eqEggDensUnderA} replaces an earlier equation (there were a few 'earlier' equations..) for algae egg density which is no longer in use:
-%\begin{multline}
-%EggsDAlg = 1033.6694 \times AlgLayers^{0.7137} \times AlgProp^{1.5076} \times A \times 0.502 \enspace .
-%\label{eqOldEggDensUnderA}
-%\end{multline}
+where $AlgLyrs$ is the number of egg layers on a given algae type, $AlgProp$ is the proportion of the quadrat covered by the algae, $A$ is the algae coefficient (\autoref{tabAlgTypes}), $Q$ is the quadrat size coefficient (\autoref{tabQuadSize}), and $EggsDAlg$ is in $\text{Eggs} \cdot 10^{3} \cdot \text{m}^{-2}$.
 The total linear weighted understory egg density in thousands is%
-\footnote{Explain why we calculate weighted linear egg density, $EggDensWtQ$.
+\footnote{Explain why we calculate `weighted' linear egg density, $EggDensWtQ$.
 Is it weighted because transects are different lengths (which we call widths, to be consistent with spawn level dimensions)?}
 \begin{equation}
 EggDensWtQ = \left( EggsDSub + EggsDAlg \right) \times Width
@@ -414,7 +404,7 @@ At the transect level, the mean $EggDensWtQ$ is $EggDensWtMeanT$.
 
 \subsection{SPAWN LEVEL CALCULATIONS}
 
-At the spawn level, the sum of the width at each transect $Width$ is $WidthTotS$, the mean of $Width$ is $WidthMeanS$, and the algae length is $LengthAlgS$, all in metres.
+At the spawn level, the sum transect width $Width$ is $WidthTotS$, the mean of $Width$ is $WidthMeanS$, and the algae length is $LengthAlgS$, all in metres.
 If $LengthAlg$ is inadvertently not recorded, we set $LengthAlg$ to the transect length $Length$.
 The sum of $EggDensWtMeanT$ is $EggDensWtTotS$.
 Understory egg density is 
@@ -491,12 +481,12 @@ Finally, we have commented each line in the \textbf{R} script to promote accessi
 
 \section{ACKNOWLEDGEMENTS}
 
-Keep in mind those we may want to thank:
+Keep in mind the folks that we want to thank for their help:
 \begin{itemize}
-\item Ashleen Benson for translating the \textbf{Microsoft Access} database to an \textbf{R} script, which we referenced when writing \texttt{SpawnIndex.R}
-\item Jake Schweigert for background and justification of the manual corrections (\autoref{subsecUpdate})
+\item Ashleen Benson for translating the \textbf{Microsoft Access} database to an \textbf{R} script, which we referenced when developing \texttt{SpawnIndex.R} (and for reviewing?)
+\item Jake Schweigert for background and justification of the manual corrections (\autoref{subsecUpdate}; and for reviewing?)
 \end{itemize}
-Also, keep in mind the two reviewers (Ashleen and Jake come to mind)
+Also, we need two reviewers; they should be mentioned here too (Ashleen and Jake come to mind).
 
 % References
 \bibliographystyle{Document/CJFAS}
