@@ -223,8 +223,7 @@ EggLyrs = Layers \times Proportion
 where $Layers$ is the number of egg layers on a given substrate type, and $Proportion$ is the proportion of the transect covered by the substrate type.
 At the transect level, the sum of $EggLyrs$ is $EggLyrsTotT$.
 That is to say, $EggLyrsTotT$ is the sum of $EggLyrs$ for all the substrate types within a given transect.
-Note that we have avoided subscript notation in these equations to correspond with the \textbf{R} script which avoids subscripts (e.g., no `for' loops or indexing).%make this report more accessible, and to
-\footnote{We could add subscript notation if required.}
+Note that we avoid subscript notation in these equations to correspond with the \textbf{R} script which avoids subscripts (e.g., no `\texttt{for}' loops).
 For the time period when spawn `intensity' categories were recorded instead of estimating the number of egg layers, intensity is converted to $EggLyrsTotT$ (\autoref{tabIntensity}).
 Surface egg density in thousands is \citep{SchweigertEtal1997}%
 \footnote{Notwithstanding the units provided in \cite{SchweigertEtal1997}, surface egg density is in thousands ($\text{eggs} \cdot 10^{3} \cdot \text{m}^{-2}$; J.~Schweigert, personal communication, 24 February 2017).}

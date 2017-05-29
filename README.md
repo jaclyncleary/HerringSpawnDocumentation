@@ -7,5 +7,5 @@ We calculate the spawn index in several steps.
 First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index.
 Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory.
 Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale of science advice and fishery management for Pacific herring in BC.
-In addition, we describe some sources of uncertainty in our spawn index calculations.
+In addition, we describe some sources of uncertainty in the spawn index calculations.
 Note that the 'spawn index' is not scaled by the spawn survey scaling parameter, *q*; therefore it is an index, not a direct estimate, of spawning stock biomass.

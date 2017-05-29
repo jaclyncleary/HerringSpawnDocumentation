@@ -82,7 +82,7 @@
 
 % Abstract
 \newcommand{\trAbstract}{
-The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada. This report documents how we calculate the spawn index from spawn survey observations (e.g., number of egg layers, extent, substrate type). There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory. We calculate the spawn index in several steps. First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index. Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory. Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale of science advice and fishery management for Pacific herring in BC. In addition, we describe some sources of uncertainty in our spawn index calculations. Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$; therefore it is an index, not a direct estimate, of spawning stock biomass.
+The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada. This report documents how we calculate the spawn index from spawn survey observations (e.g., number of egg layers, extent, substrate type). There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory. We calculate the spawn index in several steps. First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index. Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory. Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale of science advice and fishery management for Pacific herring in BC. In addition, we describe some sources of uncertainty in the spawn index calculations. Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$; therefore it is an index, not a direct estimate, of spawning stock biomass.
 }
 
 % Resume (i.e., French abstract)
@@ -263,8 +263,7 @@ EggLyrs = Layers \times Proportion
 where $Layers$ is the number of egg layers on a given substrate type, and $Proportion$ is the proportion of the transect covered by the substrate type.
 At the transect level, the sum of $EggLyrs$ is $EggLyrsTotT$.
 That is to say, $EggLyrsTotT$ is the sum of $EggLyrs$ for all the substrate types within a given transect.
-Note that we have avoided subscript notation in these equations to correspond with the \textbf{R} script which avoids subscripts (e.g., no `for' loops or indexing).%make this report more accessible, and to
-\footnote{We could add subscript notation if required.}
+Note that we avoid subscript notation in these equations to correspond with the \textbf{R} script which avoids subscripts (e.g., no `\texttt{for}' loops).
 For the time period when spawn `intensity' categories were recorded instead of estimating the number of egg layers, intensity is converted to $EggLyrsTotT$ (\autoref{tabIntensity}).
 Surface egg density in thousands is \citep{SchweigertEtal1997}%
 \footnote{Notwithstanding the units provided in \cite{SchweigertEtal1997}, surface egg density is in thousands ($\text{eggs} \cdot 10^{3} \cdot \text{m}^{-2}$; J.~Schweigert, personal communication, 24 February 2017).}
