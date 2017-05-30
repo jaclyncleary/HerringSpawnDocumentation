@@ -66,7 +66,7 @@
 \newcommand{\trYear}{2017}
 \newcommand{\trReportNum}{XXXX}
 \newcommand{\trAuthFootA}{\footnote{E-mail: \texttt{Matthew.Grinnell@dfo-mpo.gc.ca} $|$ telephone: (250)~756.7055}}
-\newcommand{\trAuthsLong}{Matthew H. Grinnell,\trAuthFootA{} and others...}  % JC, MT, JS...
+\newcommand{\trAuthsLong}{Matthew H. Grinnell,\trAuthFootA{} and others...}  % MT, JS, JC...
 \newcommand{\trAuthsBack}{Grinnell, M.H., et al...}
 
 % New definition: Address
@@ -82,7 +82,7 @@
 
 % Abstract
 \newcommand{\trAbstract}{
-The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada. This report documents how we calculate the spawn index from spawn survey observations (e.g., number of egg layers, extent, substrate type). There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory. We calculate the spawn index in several steps. First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index. Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory. Finally, we combine the three spawn indices, and aggregate by year and stock assessment region to match the temporal and spatial scale of science advice and fishery management for Pacific herring in BC. In addition, we describe some sources of uncertainty in the spawn index calculations. Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$; therefore it is an index, not a direct estimate, of spawning stock biomass.
+The spawn index time series is one component of Pacific herring ($Clupea$ $pallasii$) stock assessments in British Columbia (BC), Canada. This report documents how we calculate the spawn index from spawn survey observations (e.g., spawn extent, number of egg layers, substrate type). There are three types of spawn survey observations: surface observations, underwater observations of spawn on Macrocystis ($Macrocystis$ spp.), and underwater observations of spawn on understory. We calculate the spawn index in several steps. First, we quantify Pacific herring fecundity, which is critical to calculating the spawn index. Second, we describe the calculations for each of the three spawn survey types: surface, Macrocystis, and understory. Finally, we combine the three spawn indices, and aggregate by stock assessment region and year to match the spatial and temporal scale of science advice and fishery management for Pacific herring in BC. In addition, we identify uncertainties in the spawn index calculations, and we detail how users can download the script to calculate the spawn index on an example database. Note that the `spawn index' is not scaled by the spawn survey scaling parameter, $q$; therefore it is an index, not a direct estimate, of spawning stock biomass.
 }
 
 % Resume (i.e., French abstract)
@@ -467,7 +467,7 @@ TotalSI = SurfSI + MacroSI + UnderSI
 \label{eqTotalSI}
 \end{equation}
 where $TotalSI$ is in tonnes.
-Although we track the date and location (i.e., eastings, northings) for each spawn event, we aggregate the total spawn index by year and SAR to align with the temporal and spatial scale for Pacific herring science advice and fishery management in BC \citeyearpar[CSAS][]{CSAS2015b}.
+Although we track the date and location (i.e., eastings, northings) for each spawn event, we aggregate the total spawn index by SAR and year to align with the spatial and temporal scale for Pacific herring science advice and fishery management in BC \citeyearpar[CSAS][]{CSAS2015b}.
 As previously mentioned, the `spawn index' is not scaled by the spawn survey scaling parameter, $q$ \citeyearpar[CSAS][]{CSAS2015b}; therefore it is an index, not a direct estimate, of spawning stock biomass.
 
 \section{SOURCES OF UNCERTAINTY}\label{secUncertain}
@@ -513,19 +513,25 @@ Instructions for running \texttt{SpawnIndex.R} are on the \textbf{GitHub} websit
 Essentially, the \textbf{R} script imports data from the Pacific herring spawn survey database (Ref?), and follows the calculations described in this report.
 
 This report is meant to accompany the \textbf{R} script, which has complete details regarding how we implement the spawn index calculations.
-Sections in this report correspond somewhat to functions in the \textbf{R} script.
+Sections in this report correspond to functions in the \textbf{R} script.
 For example, \autoref{secSurf}, `Surface spawn' follows the \textbf{R} function \texttt{CalcSurfaceSpawn}.
-In addition, variable names in this report correspond to variable names in the script; 
+In addition, variable names in this report correspond to variable names in the script.
 Finally, we have commented each line in the \textbf{R} script to promote accessibility and transparency.
 
 \section{ACKNOWLEDGEMENTS}
 
 Keep in mind the folks that we want to thank for their help:
 \begin{itemize}
-\item Ashleen Benson for translating the \textbf{Microsoft Access} database to an \textbf{R} script, which we referenced when developing \texttt{SpawnIndex.R} (and for reviewing?)
-\item Jake Schweigert for background and justification of the manual corrections (\autoref{subsecUpdate}; and for reviewing?)
+\item Ashleen Benson? She translated the \textbf{Microsoft Access} database to an \textbf{R} script, which we referenced when developing \texttt{SpawnIndex.R} -- I'm not sure if this is necessary because she did this as part of a different project.
+\item Jake Schweigert for background information and justification of the manual corrections (\autoref{subsecUpdate}). Maybe he will be a co-author instead?
 \end{itemize}
-Also, we need two reviewers; they should be mentioned here too (Ashleen and Jake come to mind).
+Also, we need two reviewers, which we should mention here. Options include:
+\begin{itemize}
+\item Ashleen Benson
+\item Jake Schweigert (co-author?)
+\item Kristen Daniels?
+\item Someone from the HTWG
+\end{itemize}
 
 % References
 \bibliographystyle{Document/CJFAS}
