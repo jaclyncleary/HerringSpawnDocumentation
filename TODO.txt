@@ -1,0 +1,8 @@
+Get better kerning between multi-letter variable names. For example, variable names should go in a function rather than, say, $text$. Make a new function:
+\newcommand{\mli}[1]{\mathit{#1}}  % or, use \textit{} which preserves spaces, and other things
+where \mli stands for 'multi-letter identifier', and then put variable names as follows:
+$\mli{P}=\mli{NP}$
+https://tex.stackexchange.com/questions/129400/multiple-letters-without-spacing-in-math
+https://tex.stackexchange.com/questions/11199/why-different-commands-for-seemingly-similar-tasks
+
+Change style file from techreport.sty to TechReport.sty, and update the call in the *.rnw.
