@@ -5,4 +5,8 @@ $\mli{P}=\mli{NP}$
 https://tex.stackexchange.com/questions/129400/multiple-letters-without-spacing-in-math
 https://tex.stackexchange.com/questions/11199/why-different-commands-for-seemingly-similar-tasks
 
-Change style file from techreport.sty to TechReport.sty, and update the call in the *.rnw.
+Change style file from techreport.sty to TechReport.sty, and update the call in the *.rnw. Also, move it to /Document
+
+Jaclyn: JSC
+
+Cite 'WilsonEtal2016': Good enough practices in scientific computing.
