@@ -10,3 +10,5 @@ Change style file from techreport.sty to TechReport.sty, and update the call in 
 Jaclyn: JSC
 
 Cite 'WilsonEtal2016': Good enough practices in scientific computing.
+
+Update GitHub link to https://github.com/grinnellm/HerringSpawnIndex.
